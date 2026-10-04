@@ -24,7 +24,7 @@ import com.phoenix.nothingwidget.core.widget_config.tintImage
 object WeatherWidgetRenderer {
 
     private const val TAG = "WEATHER_RENDER"
-    private const val EMPTY_CONDITION = "—"
+    private const val EMPTY_CONDITION = "-"
     private const val NO_TINT = 0x00000000
 
     private val TEMPERATURE_VARIANTS = mapOf(

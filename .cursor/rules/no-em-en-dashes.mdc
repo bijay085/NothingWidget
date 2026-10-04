@@ -1,0 +1,16 @@
+---
+description: Never use em dashes or en dashes in this project
+alwaysApply: true
+---
+
+# No em or en dashes
+
+Never use Unicode em dash (U+2014) or en dash (U+2013) anywhere in this project: UI strings, code, comments, XML, docs, or commits.
+
+Use instead:
+
+- ASCII hyphen-minus `-` for ranges and simple separators (`1-3`, `slot1-slot8`)
+- Comma, period, colon, or parentheses for prose breaks
+- ASCII `-` for empty UI placeholders
+
+Do not reintroduce these characters when editing or generating text.

@@ -55,7 +55,7 @@ data class WidgetItem(
     companion object {
         val RECENT_WINDOW_MS: Long = TimeUnit.DAYS.toMillis(10)
         private const val MAX_TAGS = 3
-        /** `2×2`, `4×2+`, `4x3` — allow × or x. */
+        /** `2×2`, `4×2+`, `4x3`: allow × or x. */
         private val SIZE_TAG = Regex("""^\d+[×x]\d+\+?$""")
     }
 }

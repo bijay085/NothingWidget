@@ -1,8 +1,11 @@
 package com.phoenix.nothingwidget.widgets.screen_time_large
 
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.util.TypedValue
 import android.view.View
 import android.widget.RemoteViews
@@ -14,6 +17,9 @@ import com.phoenix.nothingwidget.core.widget_config.WidgetCustomizationRepositor
 import com.phoenix.nothingwidget.core.widget_config.setSolidBackground
 import com.phoenix.nothingwidget.core.widget_config.setTextSizePx
 import com.phoenix.nothingwidget.core.widget_config.showFontVariant
+import com.phoenix.nothingwidget.widgets.screen_time.PrivacyAccessEntry
+import com.phoenix.nothingwidget.widgets.screen_time.PrivacyAccessModel
+import com.phoenix.nothingwidget.widgets.screen_time.PrivacyAccessRepository
 import com.phoenix.nothingwidget.widgets.screen_time.ScreenTimeClickHelper
 import com.phoenix.nothingwidget.widgets.screen_time.ScreenTimeModel
 import com.phoenix.nothingwidget.widgets.screen_time.ScreenTimeRepository
@@ -265,12 +271,21 @@ object ScreenTimeLargeRenderer {
         appWidgetIds: IntArray,
     ) {
         val model = ScreenTimeRepository.loadToday(context)
+        val privacy = PrivacyAccessRepository.load(context)
         val config = WidgetCustomizationRepository.config(context, ScreenTimeLargeCustomization)
         appWidgetIds.forEach { id ->
             val maxApps = visibleAppCount(appWidgetManager, id)
             appWidgetManager.updateAppWidget(
                 id,
-                build(context, model, config, interactive = true, maxApps = maxApps),
+                build(
+                    context = context,
+                    appWidgetId = id,
+                    model = model,
+                    privacy = privacy,
+                    config = config,
+                    interactive = true,
+                    maxApps = maxApps,
+                ),
             )
         }
     }
@@ -297,9 +312,11 @@ object ScreenTimeLargeRenderer {
             ),
         )
         return build(
-            context,
-            sample,
-            config,
+            context = context,
+            appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID,
+            model = sample,
+            privacy = PrivacyAccessRepository.load(context),
+            config = config,
             interactive = false,
             maxApps = ScreenTimeLargeConfig.TOP_APPS_COUNT,
         )
@@ -329,7 +346,9 @@ object ScreenTimeLargeRenderer {
 
     private fun build(
         context: Context,
+        appWidgetId: Int,
         model: ScreenTimeModel,
+        privacy: PrivacyAccessModel,
         config: WidgetCustomizationConfig,
         interactive: Boolean,
         maxApps: Int,
@@ -339,6 +358,9 @@ object ScreenTimeLargeRenderer {
         val section = config.element(ScreenTimeLargeCustomization.ELEMENT_SECTION)
         val app = config.element(ScreenTimeLargeCustomization.ELEMENT_APP)
         val time = config.element(ScreenTimeLargeCustomization.ELEMENT_TIME)
+        val privacyTitle = config.element(ScreenTimeLargeCustomization.ELEMENT_PRIVACY_TITLE)
+        val privacyApp = config.element(ScreenTimeLargeCustomization.ELEMENT_PRIVACY_APP)
+        val privacyWhen = config.element(ScreenTimeLargeCustomization.ELEMENT_PRIVACY_TIME)
 
         val views = RemoteViews(context.packageName, R.layout.widget_screen_time_large)
         views.setSolidBackground(
@@ -389,14 +411,139 @@ object ScreenTimeLargeRenderer {
             .orEmpty()
             .take(maxApps.coerceIn(0, APP_ROWS.size))
         bindApps(views, context, apps, app, time)
+        bindPrivacy(views, context, privacy, privacyTitle, privacyApp, privacyWhen)
 
-        if (interactive) {
+        val page = if (interactive && appWidgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
+            ScreenTimeLargePageStore.getPage(context, appWidgetId)
+        } else {
+            ScreenTimeLargeConfig.PAGE_TODAY
+        }
+        views.setDisplayedChild(R.id.screen_time_large_flipper, page)
+        applyPageDots(views, page)
+
+        if (interactive && appWidgetId != AppWidgetManager.INVALID_APPWIDGET_ID) {
             views.setOnClickPendingIntent(
-                R.id.widget_screen_time_large_root,
+                R.id.screen_time_large_today_root,
                 ScreenTimeClickHelper.pendingIntent(context),
+            )
+            val prev = ScreenTimeLargePageStore.adjacent(page, -1)
+            val next = ScreenTimeLargePageStore.adjacent(page, 1)
+            views.setOnClickPendingIntent(
+                R.id.screen_time_large_btn_left,
+                pagePi(context, appWidgetId, prev),
+            )
+            views.setOnClickPendingIntent(
+                R.id.screen_time_large_btn_right,
+                pagePi(context, appWidgetId, next),
+            )
+            views.setOnClickPendingIntent(
+                R.id.screen_time_large_dot_today,
+                pagePi(context, appWidgetId, ScreenTimeLargeConfig.PAGE_TODAY),
+            )
+            views.setOnClickPendingIntent(
+                R.id.screen_time_large_dot_privacy,
+                pagePi(context, appWidgetId, ScreenTimeLargeConfig.PAGE_PRIVACY),
             )
         }
         return views
+    }
+
+    private fun bindPrivacy(
+        views: RemoteViews,
+        context: Context,
+        privacy: PrivacyAccessModel,
+        titleStyle: ElementStyleConfig,
+        appStyle: ElementStyleConfig,
+        whenStyle: ElementStyleConfig,
+    ) {
+        val noAccess = context.getString(R.string.screen_time_large_privacy_no_access)
+        views.setTextViewText(
+            R.id.screen_time_large_privacy_title,
+            context.getString(R.string.screen_time_large_privacy_title),
+        )
+        views.setTextColor(R.id.screen_time_large_privacy_title, titleStyle.textColor)
+        views.setTextSizePx(sp(context, titleStyle.fontSize), R.id.screen_time_large_privacy_title)
+
+        bindPrivacyRow(
+            views, context, privacy.camera, noAccess,
+            R.id.screen_time_large_privacy_camera_label,
+            R.id.screen_time_large_privacy_camera_app,
+            R.id.screen_time_large_privacy_camera_when,
+            titleStyle, appStyle, whenStyle,
+        )
+        bindPrivacyRow(
+            views, context, privacy.microphone, noAccess,
+            R.id.screen_time_large_privacy_mic_label,
+            R.id.screen_time_large_privacy_mic_app,
+            R.id.screen_time_large_privacy_mic_when,
+            titleStyle, appStyle, whenStyle,
+        )
+        bindPrivacyRow(
+            views, context, privacy.location, noAccess,
+            R.id.screen_time_large_privacy_location_label,
+            R.id.screen_time_large_privacy_location_app,
+            R.id.screen_time_large_privacy_location_when,
+            titleStyle, appStyle, whenStyle,
+        )
+    }
+
+    private fun bindPrivacyRow(
+        views: RemoteViews,
+        context: Context,
+        entry: PrivacyAccessEntry,
+        noAccess: String,
+        labelId: Int,
+        appId: Int,
+        whenId: Int,
+        titleStyle: ElementStyleConfig,
+        appStyle: ElementStyleConfig,
+        whenStyle: ElementStyleConfig,
+    ) {
+        views.setTextColor(labelId, titleStyle.textColor)
+        views.setTextSizePx(sp(context, (titleStyle.fontSize - 2).coerceAtLeast(11)), labelId)
+        if (entry.hasAccess) {
+            views.setTextViewText(appId, entry.appName)
+            views.setTextViewText(whenId, entry.whenLabel.orEmpty())
+            views.setViewVisibility(
+                whenId,
+                if (entry.whenLabel.isNullOrBlank()) View.GONE else View.VISIBLE,
+            )
+        } else {
+            views.setTextViewText(appId, noAccess)
+            views.setTextViewText(whenId, "")
+            views.setViewVisibility(whenId, View.GONE)
+        }
+        views.setTextColor(appId, appStyle.textColor)
+        views.setTextSizePx(sp(context, appStyle.fontSize), appId)
+        views.setTextColor(whenId, whenStyle.textColor)
+        views.setTextSizePx(sp(context, whenStyle.fontSize), whenId)
+    }
+
+    private fun applyPageDots(views: RemoteViews, page: Int) {
+        val onToday = page == ScreenTimeLargeConfig.PAGE_TODAY
+        views.setImageViewResource(
+            R.id.screen_time_large_dot_today,
+            if (onToday) R.drawable.screen_time_large_dot_on else R.drawable.screen_time_large_dot_off,
+        )
+        views.setImageViewResource(
+            R.id.screen_time_large_dot_privacy,
+            if (onToday) R.drawable.screen_time_large_dot_off else R.drawable.screen_time_large_dot_on,
+        )
+    }
+
+    private fun pagePi(context: Context, appWidgetId: Int, page: Int): PendingIntent {
+        val intent = Intent(context, ScreenTimeLargeWidgetReceiver::class.java).apply {
+            action = ScreenTimeLargeConfig.ACTION_SET_PAGE
+            putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
+            putExtra(ScreenTimeLargeConfig.EXTRA_PAGE, page)
+            data = Uri.parse("screentimelarge://page/$appWidgetId/$page")
+        }
+        return PendingIntent.getBroadcast(
+            context.applicationContext,
+            5400 + appWidgetId * 10 + page,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+        )
     }
 
     private fun bindApps(

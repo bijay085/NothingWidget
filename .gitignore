@@ -3,6 +3,7 @@
 .kotlin/
 /build/
 /app/build/
+**/build/
 /captures/
 .externalNativeBuild
 .cxx/
@@ -14,3 +15,8 @@ local.properties
 *.aab
 *.log
 .tmp_*.png
+*.keystore
+*.jks
+.cursor/*
+!.cursor/rules/
+!.cursor/rules/**

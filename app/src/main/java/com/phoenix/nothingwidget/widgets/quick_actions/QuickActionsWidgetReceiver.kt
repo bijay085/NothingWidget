@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 
 /**
- * 4×1 Quick Actions widget — three slots from [QuickActionType].
+ * 4×1 Quick Actions widget: three slots from [QuickActionType].
  */
 class QuickActionsWidgetReceiver : AppWidgetProvider() {
 

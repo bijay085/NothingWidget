@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="widget_screen_time_large_name">Screen Time Large</string>
-    <string name="widget_screen_time_large_description">Today\'s screen time and top apps</string>
+    <string name="widget_screen_time_large_description">Screen time, top apps, and privacy access</string>
     <string name="widget_screen_time_large_today">Today</string>
     <string name="widget_screen_time_large_top_apps">Top Apps</string>
     <string name="widget_screen_time_large_grant_access">Grant access</string>
@@ -12,4 +12,12 @@
     <string name="widget_screen_time_large_mock_time2">45m</string>
     <string name="widget_screen_time_large_mock_app3">Chrome</string>
     <string name="widget_screen_time_large_mock_time3">32m</string>
+
+    <string name="screen_time_large_privacy_title">Privacy</string>
+    <string name="screen_time_large_privacy_camera">Camera</string>
+    <string name="screen_time_large_privacy_mic">Mic</string>
+    <string name="screen_time_large_privacy_location">Location</string>
+    <string name="screen_time_large_privacy_no_access">No recent access</string>
+    <string name="screen_time_large_cd_prev">Previous page</string>
+    <string name="screen_time_large_cd_next">Next page</string>
 </resources>

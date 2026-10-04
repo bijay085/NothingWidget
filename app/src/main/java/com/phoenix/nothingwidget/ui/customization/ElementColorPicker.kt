@@ -87,7 +87,7 @@ fun ElementColorPicker(
     }
 }
 
-/** One reusable advanced picker — only shown when Custom is selected. */
+/** One reusable advanced picker: only shown when Custom is selected. */
 @Composable
 private fun AdvancedColorPickerDialog(
     color: Int,
@@ -106,12 +106,12 @@ private fun AdvancedColorPickerDialog(
         var s = hsv[1]
         var v = hsv[2]
         if (v < 0.08f) {
-            // Opened from Black — start on a vivid hue so sliders do something.
+            // Opened from Black: start on a vivid hue so sliders do something.
             h = if (h.isNaN()) 0f else h
             s = 1f
             v = 1f
         } else if (s < 0.08f) {
-            // Opened from White / gray — give Saturation room to move.
+            // Opened from White / gray: give Saturation room to move.
             s = 1f
         }
         Triple(h, s, v)
@@ -188,7 +188,7 @@ private fun AdvancedColorPickerDialog(
                             value = hue,
                             onValueChange = {
                                 hue = it
-                                // Hue is invisible at V≈0 or S≈0 — keep color lively.
+                                // Hue is invisible at V≈0 or S≈0: keep color lively.
                                 if (brightness < 0.15f) brightness = 1f
                                 if (saturation < 0.15f) saturation = 1f
                                 emit(h = it, s = saturation, v = brightness)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget description="Today's screen time and top apps">
-    <tag label="4×2+" />
-    <tag label="Resizable" />
+<widget description="Screen time, top apps, and privacy access">
+    <tag label="4×4+" />
+    <tag label="Privacy" />
 </widget>

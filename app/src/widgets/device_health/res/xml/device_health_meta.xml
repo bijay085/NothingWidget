@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget description="Battery overview, charging, health details, and performance">
+    <tag label="4×2" />
+    <tag label="Fixed" />
+    <tag label="Battery" />
+</widget>

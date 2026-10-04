@@ -1,5 +1,10 @@
 # Nothing Widget Development Instructions
 
+## Typography
+
+Never use Unicode em dashes (U+2014) or en dashes (U+2013) in UI, code, comments, XML, or docs.
+Use ASCII hyphen-minus `-`, commas, periods, or colons instead.
+
 ## Project Goal
 
 Build a native Android application named Nothing Widget containing multiple customizable Android home-screen widgets.

@@ -7,7 +7,7 @@ import android.hardware.camera2.CameraManager
 import android.util.Log
 import androidx.core.content.ContextCompat
 
-/** Torch toggle via [CameraManager] — no CameraX. */
+/** Torch toggle via [CameraManager]: no CameraX. */
 object QuickActionsFlashlight {
 
     private const val TAG = "QuickActionsFlash"

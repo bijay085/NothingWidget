@@ -57,7 +57,7 @@ object ScreenTimeClickHelper {
 
         val pm = context.packageManager
 
-        // Digital Wellbeing — App usage / Screen Time dashboard
+        // Digital Wellbeing: App usage / Screen Time dashboard
         val dashboard = Intent("com.google.android.apps.wellbeing.action.APP_USAGE_DASHBOARD")
         if (dashboard.resolveActivity(pm) != null) return dashboard
 

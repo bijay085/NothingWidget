@@ -9,7 +9,7 @@
         <item name="android:maxLines">1</item>
         <item name="android:text">@string/widget_screen_time_mock_total</item>
         <item name="android:textColor">@color/screen_time_text</item>
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">28sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -40,7 +40,7 @@
         <item name="android:includeFontPadding">false</item>
         <item name="android:text">@string/widget_screen_time_today</item>
         <item name="android:textColor">@color/screen_time_secondary</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="ScreenTimeLabel.Clean">
@@ -72,7 +72,7 @@
         <item name="android:maxLines">1</item>
         <item name="android:text">@string/widget_screen_time_mock_app</item>
         <item name="android:textColor">@color/screen_time_accent</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">13sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 

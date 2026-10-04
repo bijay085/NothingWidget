@@ -9,7 +9,7 @@ object QuickActionsConfig {
 
     /**
      * DataStore element ids → `quick_actions.slotN.icon_style`.
-     * First three are always on; 4–8 are optional extras for wider / scrollable strips.
+     * First three are always on; 4-8 are optional extras for wider / scrollable strips.
      */
     const val ELEMENT_SLOT1 = "slot1"
     const val ELEMENT_SLOT2 = "slot2"

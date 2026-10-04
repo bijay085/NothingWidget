@@ -38,6 +38,28 @@ class ScreenTimeLargeWidgetReceiver : AppWidgetProvider() {
                 }
             }
 
+            ScreenTimeLargeConfig.ACTION_SET_PAGE -> {
+                val id = intent.getIntExtra(
+                    AppWidgetManager.EXTRA_APPWIDGET_ID,
+                    AppWidgetManager.INVALID_APPWIDGET_ID,
+                )
+                if (id != AppWidgetManager.INVALID_APPWIDGET_ID) {
+                    ScreenTimeLargePageStore.setPage(
+                        context,
+                        id,
+                        intent.getIntExtra(
+                            ScreenTimeLargeConfig.EXTRA_PAGE,
+                            ScreenTimeLargeConfig.PAGE_TODAY,
+                        ),
+                    )
+                    ScreenTimeLargeRenderer.render(
+                        context,
+                        AppWidgetManager.getInstance(context),
+                        intArrayOf(id),
+                    )
+                }
+            }
+
             else -> super.onReceive(context, intent)
         }
     }

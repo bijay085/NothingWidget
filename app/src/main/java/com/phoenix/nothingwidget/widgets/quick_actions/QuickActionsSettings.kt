@@ -5,8 +5,8 @@ import com.phoenix.nothingwidget.core.widget_config.WidgetCustomizationConfig
 import com.phoenix.nothingwidget.core.widget_config.WidgetCustomizationRepository
 
 /**
- * Reads slot1–slot8 from the shared widget customization DataStore.
- * Returns only enabled slots (1–3 always; 4–8 when turned on).
+ * Reads slot1-slot8 from the shared widget customization DataStore.
+ * Returns only enabled slots (1-3 always; 4-8 when turned on).
  */
 object QuickActionsSettings {
 

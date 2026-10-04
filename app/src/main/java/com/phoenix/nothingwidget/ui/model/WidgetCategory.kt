@@ -12,7 +12,7 @@ enum class WidgetCategory(val label: String) {
     Calendar("Calendar"),
 }
 
-/** Category navigation only — never Installed / Newly Introduced / Favorites. */
+/** Category navigation only: never Installed / Newly Introduced / Favorites. */
 sealed class LibraryFilter {
     abstract val label: String
 

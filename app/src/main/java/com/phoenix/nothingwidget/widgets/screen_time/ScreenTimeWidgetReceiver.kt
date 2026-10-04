@@ -10,13 +10,8 @@ import android.content.Intent
 import android.util.Log
 
 /**
- * Screen Time AppWidgetProvider — data from [UsageStatsManager] via [ScreenTimeRepository].
- *
- * Refresh sources:
- * - AlarmManager every [ScreenTimeConfig.REFRESH_INTERVAL_MS]
- * - WorkManager chain (OEM / Doze backup)
- * - System [AppWidgetManager] period (30 min floor)
- * - Boot / package replace / date change
+ * Compact Screen Time AppWidgetProvider.
+ * Data from [UsageStatsManager] via [ScreenTimeRepository].
  */
 class ScreenTimeWidgetReceiver : AppWidgetProvider() {
 
@@ -81,7 +76,6 @@ class ScreenTimeWidgetReceiver : AppWidgetProvider() {
     private fun scheduleRefresh(context: Context) {
         val alarmManager = context.getSystemService(AlarmManager::class.java) ?: return
         val triggerAt = System.currentTimeMillis() + ScreenTimeConfig.REFRESH_INTERVAL_MS
-        // RTC_WAKEUP so the next tick is not postponed until an unrelated wake.
         alarmManager.setAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
             triggerAt,
@@ -112,7 +106,6 @@ class ScreenTimeWidgetReceiver : AppWidgetProvider() {
 
         fun requestRefresh(context: Context) {
             val app = context.applicationContext
-            // Goes through onUpdate so AlarmManager + WorkManager are re-armed.
             app.sendBroadcast(
                 Intent(app, ScreenTimeWidgetReceiver::class.java)
                     .setAction(ScreenTimeConfig.ACTION_REFRESH),

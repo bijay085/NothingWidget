@@ -6,7 +6,7 @@ import android.content.Context
 import android.util.Log
 
 /**
- * Weather AppWidgetProvider — no UI styling here.
+ * Weather AppWidgetProvider: no UI styling here.
  * All RemoteViews updates go through [WeatherWidgetRenderer].
  */
 class WeatherWidgetReceiver : AppWidgetProvider() {

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:configure="com.phoenix.nothingwidget.widgets.device_health.DeviceHealthConfigActivity"
+    android:description="@string/widget_device_health_description"
+    android:initialLayout="@layout/widget_device_health"
+    android:minHeight="110dp"
+    android:minWidth="250dp"
+    android:previewImage="@drawable/device_health_preview"
+    android:previewLayout="@layout/widget_device_health_preview"
+    android:resizeMode="none"
+    android:targetCellHeight="2"
+    android:targetCellWidth="4"
+    android:updatePeriodMillis="1800000"
+    android:widgetCategory="home_screen"
+    android:widgetFeatures="reconfigurable|configuration_optional" />

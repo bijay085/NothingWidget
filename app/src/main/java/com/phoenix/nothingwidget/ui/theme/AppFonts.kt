@@ -8,7 +8,7 @@ import androidx.compose.ui.text.font.FontWeight
 import com.phoenix.nothingwidget.R
 
 /**
- * App UI fonts (SIL Open Font License, bundled locally — see /licenses).
+ * App UI fonts (SIL Open Font License, bundled locally: see /licenses).
  *
  * Space Grotesk is a variable font, so each weight declares its own axis value.
  * Widget fonts are separate and live with each widget.

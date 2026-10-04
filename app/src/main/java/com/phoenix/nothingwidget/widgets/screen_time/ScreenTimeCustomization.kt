@@ -46,19 +46,19 @@ object ScreenTimeCustomization : WidgetCustomization {
                 elementId = ELEMENT_TOTAL,
                 textColor = StylePresets.WHITE,
                 fontFamily = StylePresets.FONT_CLEAN,
-                fontSize = 32,
+                fontSize = 28,
             ),
             ELEMENT_LABEL to ElementStyleConfig(
                 elementId = ELEMENT_LABEL,
                 textColor = COLOR_SECONDARY,
                 fontFamily = StylePresets.FONT_CLEAN,
-                fontSize = 13,
+                fontSize = 12,
             ),
             ELEMENT_APP to ElementStyleConfig(
                 elementId = ELEMENT_APP,
                 textColor = COLOR_ACCENT,
                 fontFamily = StylePresets.FONT_CLEAN,
-                fontSize = 15,
+                fontSize = 13,
             ),
             ELEMENT_INDICATOR to ElementStyleConfig(
                 elementId = ELEMENT_INDICATOR,
@@ -81,7 +81,7 @@ object ScreenTimeCustomization : WidgetCustomization {
             properties = setOf(ElementProperty.COLOR, ElementProperty.FONT, ElementProperty.SIZE),
             colorChoices = StylePresets.textColors,
             fontChoices = fonts,
-            sizeChoices = listOf(SizeChoice("S", 26), SizeChoice("M", 32), SizeChoice("L", 38)),
+            sizeChoices = listOf(SizeChoice("S", 24), SizeChoice("M", 28), SizeChoice("L", 32)),
         ),
         ElementSpec(
             elementId = ELEMENT_LABEL,
@@ -89,7 +89,7 @@ object ScreenTimeCustomization : WidgetCustomization {
             properties = setOf(ElementProperty.COLOR, ElementProperty.FONT, ElementProperty.SIZE),
             colorChoices = StylePresets.textColors + ColorChoice("Soft", COLOR_SECONDARY),
             fontChoices = fonts,
-            sizeChoices = listOf(SizeChoice("S", 11), SizeChoice("M", 13), SizeChoice("L", 15)),
+            sizeChoices = listOf(SizeChoice("S", 11), SizeChoice("M", 12), SizeChoice("L", 14)),
         ),
         ElementSpec(
             elementId = ELEMENT_APP,
@@ -97,7 +97,7 @@ object ScreenTimeCustomization : WidgetCustomization {
             properties = setOf(ElementProperty.COLOR, ElementProperty.FONT, ElementProperty.SIZE),
             colorChoices = StylePresets.textColors + ColorChoice("Accent", COLOR_ACCENT),
             fontChoices = fonts,
-            sizeChoices = listOf(SizeChoice("S", 13), SizeChoice("M", 15), SizeChoice("L", 17)),
+            sizeChoices = listOf(SizeChoice("S", 12), SizeChoice("M", 13), SizeChoice("L", 15)),
         ),
         ElementSpec(
             elementId = ELEMENT_INDICATOR,

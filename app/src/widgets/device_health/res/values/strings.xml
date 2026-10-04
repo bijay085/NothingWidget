@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_device_health_name">Device Health</string>
+    <string name="widget_device_health_description">Battery overview, charging, health details, and performance</string>
+
+    <string name="device_health_title_battery">Battery</string>
+    <string name="device_health_title_charging">Charging</string>
+    <string name="device_health_title_battery_health">Battery Health</string>
+    <string name="device_health_title_performance">Performance</string>
+
+    <string name="device_health_label_status">Status</string>
+    <string name="device_health_label_temperature">Temperature</string>
+    <string name="device_health_label_health">Health</string>
+    <string name="device_health_label_cycle">Cycle Count</string>
+    <string name="device_health_label_cycles">Cycles</string>
+    <string name="device_health_label_voltage">Voltage</string>
+    <string name="device_health_label_power">Power</string>
+    <string name="device_health_label_current">Current</string>
+    <string name="device_health_label_full_in">Full in</string>
+    <string name="device_health_label_capacity">Capacity</string>
+    <string name="device_health_label_design_capacity">Design Capacity</string>
+    <string name="device_health_label_technology">Technology</string>
+    <string name="device_health_label_cpu">CPU</string>
+    <string name="device_health_label_ram">RAM</string>
+    <string name="device_health_label_storage">Storage</string>
+
+    <string name="device_health_cd_prev">Previous page</string>
+    <string name="device_health_cd_next">Next page</string>
+</resources>

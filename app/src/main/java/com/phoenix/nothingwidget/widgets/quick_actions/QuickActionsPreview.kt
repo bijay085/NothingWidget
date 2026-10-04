@@ -30,7 +30,7 @@ import com.phoenix.nothingwidget.core.widget_config.WidgetCustomizationConfig
 
 /**
  * Compose-only Customize preview for Quick Actions.
- * Reads draft [config] — never touches AppWidgetManager / pin / RemoteViews host.
+ * Reads draft [config]: never touches AppWidgetManager / pin / RemoteViews host.
  */
 @Composable
 fun QuickActionsPreview(

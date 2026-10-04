@@ -1,6 +1,5 @@
 package com.phoenix.nothingwidget.widgets.screen_time
 
-import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
@@ -16,6 +15,7 @@ import com.phoenix.nothingwidget.core.widget_config.setSolidBackground
 import com.phoenix.nothingwidget.core.widget_config.setTextSizePx
 import com.phoenix.nothingwidget.core.widget_config.showFontVariant
 import com.phoenix.nothingwidget.core.widget_config.tintImage
+
 object ScreenTimeWidgetRenderer {
 
     private val TOTAL_VARIANTS = mapOf(
@@ -67,7 +67,6 @@ object ScreenTimeWidgetRenderer {
         }
     }
 
-    /** Live customization preview — fixed sample content, styled by [config]. */
     fun preview(context: Context, config: WidgetCustomizationConfig): RemoteViews {
         val sample = ScreenTimeModel(
             totalScreenTimeToday = (5 * 60 + 42) * 60_000L,
@@ -117,7 +116,6 @@ object ScreenTimeWidgetRenderer {
             app,
         )
 
-        // Existing bottom TextView: top-app duration (not a calendar date).
         views.setTextViewText(
             R.id.screen_time_date,
             if (model.hasPermission) model.topAppUsageLabel else "",
@@ -127,7 +125,7 @@ object ScreenTimeWidgetRenderer {
 
         if (interactive) {
             views.setOnClickPendingIntent(
-                R.id.widget_screen_time_root,
+                R.id.screen_time_today_root,
                 ScreenTimeClickHelper.pendingIntent(context),
             )
         }

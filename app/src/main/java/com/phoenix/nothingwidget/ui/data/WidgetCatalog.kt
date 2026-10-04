@@ -13,6 +13,9 @@ import com.phoenix.nothingwidget.widgets.screen_time.ScreenTimeWidgetReceiver
 import com.phoenix.nothingwidget.widgets.screen_time_large.ScreenTimeLargeConfig
 import com.phoenix.nothingwidget.widgets.screen_time_large.ScreenTimeLargeCustomization
 import com.phoenix.nothingwidget.widgets.screen_time_large.ScreenTimeLargeWidgetReceiver
+import com.phoenix.nothingwidget.widgets.device_health.DeviceHealthConfig
+import com.phoenix.nothingwidget.widgets.device_health.DeviceHealthCustomization
+import com.phoenix.nothingwidget.widgets.device_health.DeviceHealthWidgetReceiver
 import com.phoenix.nothingwidget.widgets.quick_actions.QuickActionsConfig
 import com.phoenix.nothingwidget.widgets.quick_actions.QuickActionsCustomization
 import com.phoenix.nothingwidget.widgets.quick_actions.QuickActionsWidgetReceiver
@@ -26,6 +29,7 @@ object WidgetCatalog {
     const val ID_SCREEN_TIME = ScreenTimeConfig.WIDGET_ID
     const val ID_SCREEN_TIME_LARGE = ScreenTimeLargeConfig.WIDGET_ID
     const val ID_QUICK_ACTIONS = QuickActionsConfig.WIDGET_ID
+    const val ID_DEVICE_HEALTH = DeviceHealthConfig.WIDGET_ID
 
     /** Description and tags come from each widget's own `res/xml/<widget>_meta.xml`. */
     fun all(context: Context): List<WidgetItem> {
@@ -75,6 +79,7 @@ object WidgetCatalog {
                 previewCircular = false,
                 customization = ScreenTimeLargeCustomization,
             ),
+
             WidgetItem(
                 id = ID_QUICK_ACTIONS,
                 name = "Quick Actions",
@@ -85,6 +90,17 @@ object WidgetCatalog {
                 previewResId = R.drawable.quick_actions_preview,
                 previewCircular = false,
                 customization = QuickActionsCustomization,
+            ),
+            WidgetItem(
+                id = ID_DEVICE_HEALTH,
+                name = "Device Health",
+                category = WidgetCategory.System,
+                metadata = WidgetMetadata.read(context, R.xml.device_health_meta),
+                addedAtMillis = now,
+                providerClassName = DeviceHealthWidgetReceiver::class.java.name,
+                previewResId = R.drawable.device_health_preview,
+                previewCircular = false,
+                customization = DeviceHealthCustomization,
             ),
         )
     }

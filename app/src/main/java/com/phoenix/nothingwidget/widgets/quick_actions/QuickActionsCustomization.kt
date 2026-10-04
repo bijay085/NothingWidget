@@ -92,7 +92,7 @@ object QuickActionsCustomization : WidgetCustomization {
         optionalSlotSpec(QuickActionsConfig.ELEMENT_SLOT6, "Choose Action 6"),
         optionalSlotSpec(QuickActionsConfig.ELEMENT_SLOT7, "Choose Action 7"),
         optionalSlotSpec(QuickActionsConfig.ELEMENT_SLOT8, "Choose Action 8"),
-        // Info-only row (no properties) — rendered as secondary note in customize UI.
+        // Info-only row (no properties): rendered as secondary note in customize UI.
         ElementSpec(
             elementId = QuickActionsConfig.INFO_NOTE_ID,
             title = "More actions can be added. If the widget becomes wider than available space, " +
@@ -102,7 +102,7 @@ object QuickActionsCustomization : WidgetCustomization {
     )
 
     /**
-     * Interface stub only — Customize uses [QuickActionsPreview] (Compose).
+     * Interface stub only: Customize uses [QuickActionsPreview] (Compose).
      * Do not host this RemoteViews in AppWidgetHostView (HorizontalScrollView fails).
      */
     override fun previewViews(context: Context, config: WidgetCustomizationConfig): RemoteViews =

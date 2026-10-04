@@ -8,11 +8,11 @@ import org.xmlpull.v1.XmlPullParser
  * Card metadata that belongs to a widget rather than to the app UI.
  *
  * Tag convention (keep every widget consistent):
- * 1. Size — `2×2`, `4×2+` (× multiplication sign; `+` = resizable)
- * 2. Resize — `Fixed` or `Resizable`
+ * 1. Size: `2×2`, `4×2+` (× multiplication sign; `+` = resizable)
+ * 2. Resize: `Fixed` or `Resizable`
  *
- * Do not put category names, feature buzzwords, or `New` in meta —
- * category is the filter tab; `New` is added dynamically when recent.
+ * Do not put category names, feature buzzwords, or `New` in meta.
+ * Category is the filter tab; `New` is added dynamically when recent.
  *
  * ```xml
  * <widget description="Clock with date and alarm">

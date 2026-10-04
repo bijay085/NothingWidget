@@ -6,7 +6,7 @@ import com.phoenix.nothingwidget.core.widget_config.IconStyleChoice
 
 /**
  * App-controlled catalog of Quick Actions.
- * Add new entries here (e.g. ADD_WIFI) — customization picks them up via [choices].
+ * Add new entries here (e.g. ADD_WIFI): customization picks them up via [choices].
  */
 enum class QuickActionType(
     val key: String,
@@ -33,7 +33,7 @@ enum class QuickActionType(
         fun fromKey(key: String?): QuickActionType =
             entries.firstOrNull { it.key.equals(key, ignoreCase = true) } ?: QR_SCANNER
 
-        /** Only these actions appear in Customize — never open-ended device shortcuts. */
+        /** Only these actions appear in Customize: never open-ended device shortcuts. */
         fun choices(): List<IconStyleChoice> =
             entries.map { IconStyleChoice(it.choiceLabel, it.key) }
     }

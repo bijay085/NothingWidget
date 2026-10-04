@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="widget_screen_time_name">Screen Time</string>
-    <string name="widget_screen_time_description">Today\'s screen time and most used app</string>
+    <string name="widget_screen_time_description">Today\'s screen time and top app</string>
     <string name="widget_screen_time_today">Today</string>
     <string name="widget_screen_time_mock_total">2h 34m</string>
     <string name="widget_screen_time_mock_app">YouTube</string>

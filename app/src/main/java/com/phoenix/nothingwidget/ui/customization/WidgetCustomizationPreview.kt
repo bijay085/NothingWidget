@@ -28,7 +28,7 @@ import com.phoenix.nothingwidget.widgets.quick_actions.QuickActionsPreview
 /**
  * Live Customize-screen preview.
  *
- * Quick Actions uses a Compose-only strip ([QuickActionsPreview]) — AppWidgetHostView
+ * Quick Actions uses a Compose-only strip ([QuickActionsPreview]): AppWidgetHostView
  * fails on its HorizontalScrollView layout ("Couldn't add widget").
  * Other widgets still host RemoteViews at a home-screen-like cell size.
  */
@@ -99,6 +99,6 @@ private val PREVIEW_AREA_HEIGHT = 220.dp
 /**
  * Host size ≈ typical launcher 2×2 cell.
  * Large enough to read; not so large that edge-aligned elements look split.
- * No scaleX/scaleY — those glitch RemoteViews font variants.
+ * No scaleX/scaleY: those glitch RemoteViews font variants.
  */
 private val PREVIEW_HOST_SIZE = 156.dp

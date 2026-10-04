@@ -118,7 +118,7 @@ fun WidgetCustomizationScreen(
             )
 
             customization.elementSpecs.forEach { spec ->
-                // Info-only rows (no properties) — secondary note below action pickers.
+                // Info-only rows (no properties): secondary note below action pickers.
                 if (spec.properties.isEmpty()) {
                     Text(
                         text = spec.title,
@@ -246,7 +246,7 @@ private fun ElementSectionCard(
     }
 }
 
-/** Hide "Default" chips — unset / built-in values stay internal. */
+/** Hide "Default" chips: unset / built-in values stay internal. */
 private fun List<StyleChoice>.withoutDefaultLabel(): List<StyleChoice> =
     filterNot { it.label.equals("Default", ignoreCase = true) }
 

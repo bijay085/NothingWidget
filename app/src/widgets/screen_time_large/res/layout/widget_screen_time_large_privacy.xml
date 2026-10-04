@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Page 2: Privacy (camera / mic / location). Simple list, no font stacks. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/screen_time_large_privacy_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/screen_time_large_privacy_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:text="@string/screen_time_large_privacy_title"
+        android:textColor="@color/screen_time_large_secondary"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/screen_time_large_privacy_camera_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:includeFontPadding="false"
+        android:text="@string/screen_time_large_privacy_camera"
+        android:textColor="@color/screen_time_large_secondary"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/screen_time_large_privacy_camera_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:text="@string/screen_time_large_privacy_no_access"
+        android:textColor="@color/screen_time_large_text"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/screen_time_large_privacy_camera_when"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:textColor="@color/screen_time_large_accent"
+        android:textSize="12sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/screen_time_large_privacy_mic_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:includeFontPadding="false"
+        android:text="@string/screen_time_large_privacy_mic"
+        android:textColor="@color/screen_time_large_secondary"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/screen_time_large_privacy_mic_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:text="@string/screen_time_large_privacy_no_access"
+        android:textColor="@color/screen_time_large_text"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/screen_time_large_privacy_mic_when"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:textColor="@color/screen_time_large_accent"
+        android:textSize="12sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/screen_time_large_privacy_location_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:includeFontPadding="false"
+        android:text="@string/screen_time_large_privacy_location"
+        android:textColor="@color/screen_time_large_secondary"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/screen_time_large_privacy_location_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:text="@string/screen_time_large_privacy_no_access"
+        android:textColor="@color/screen_time_large_text"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/screen_time_large_privacy_location_when"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:textColor="@color/screen_time_large_accent"
+        android:textSize="12sp"
+        android:visibility="gone" />
+</LinearLayout>

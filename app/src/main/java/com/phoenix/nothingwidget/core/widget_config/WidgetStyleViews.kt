@@ -12,7 +12,7 @@ import androidx.annotation.DrawableRes
 
 fun isTransparent(@ColorInt color: Int): Boolean = Color.alpha(color) == 0
 
-/** Swap the whole background drawable — more reliable than tint for solid presets. */
+/** Swap the whole background drawable: more reliable than tint for solid presets. */
 fun RemoteViews.setBackgroundRes(viewId: Int, @DrawableRes resId: Int) {
     setInt(viewId, "setBackgroundResource", resId)
 }

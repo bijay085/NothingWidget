@@ -8,6 +8,9 @@
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission
+        android:name="android.permission.GET_APP_OPS_STATS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -234,6 +237,34 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_quick_actions_info" />
         </receiver>
+
+        <receiver
+            android:name="com.phoenix.nothingwidget.widgets.device_health.DeviceHealthWidgetReceiver"
+            android:exported="true"
+            android:label="@string/widget_device_health_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+                <!-- Note: BATTERY_CHANGED is sticky-only; read via BatteryManager on update. -->
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_device_health_info" />
+        </receiver>
+
+        <activity
+            android:name="com.phoenix.nothingwidget.widgets.device_health.DeviceHealthConfigActivity"
+            android:exported="true"
+            android:label="@string/widget_customization_label"
+            android:theme="@style/Theme.NothingWidget"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-"""Crisp Round Clock picker preview — 2048px vector/font draw (never screenshot upscale)."""
+"""Crisp Round Clock picker preview: 2048px vector/font draw (never screenshot upscale)."""
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
