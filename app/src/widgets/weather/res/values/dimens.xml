@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="weather_text_temperature">34sp</dimen>
+    <dimen name="weather_text_temperature_digital">30sp</dimen>
+    <dimen name="weather_text_unit">13sp</dimen>
+    <dimen name="weather_text_condition">13sp</dimen>
+    <dimen name="weather_text_location">11sp</dimen>
+</resources>

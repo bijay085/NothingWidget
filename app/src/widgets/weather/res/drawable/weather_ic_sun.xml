@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <!-- Soft glow -->
+    <path
+        android:fillColor="@color/weather_icon_sun_glow"
+        android:pathData="M24,10c-7.73,0 -14,6.27 -14,14s6.27,14 14,14 14,-6.27 14,-14 -6.27,-14 -14,-14z" />
+    <!-- Core -->
+    <path
+        android:fillColor="@color/weather_icon_sun"
+        android:pathData="M24,16c-4.42,0 -8,3.58 -8,8s3.58,8 8,8 8,-3.58 8,-8 -3.58,-8 -8,-8z" />
+    <!-- Rays -->
+    <path
+        android:fillColor="@color/weather_icon_sun"
+        android:pathData="M22.6,3.5h2.8v5.2h-2.8zM22.6,39.3h2.8v5.2h-2.8zM3.5,22.6h5.2v2.8H3.5zM39.3,22.6h5.2v2.8h-5.2z" />
+    <path
+        android:fillColor="@color/weather_icon_sun"
+        android:pathData="M9.2,8.0l2.0,-2.0 3.7,3.7 -2.0,2.0zM33.1,31.9l2.0,-2.0 3.7,3.7 -2.0,2.0zM39.0,8.0l-2.0,-2.0 -3.7,3.7 2.0,2.0zM9.2,40.0l2.0,2.0 3.7,-3.7 -2.0,-2.0z" />
+</vector>

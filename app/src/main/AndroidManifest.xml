@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Package visibility for the Weather widget tap target (Android 11+) -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.APP_WEATHER" />
+        </intent>
+        <package android:name="com.google.android.apps.weather" />
+        <package android:name="com.sec.android.daemonapp" />
+        <package android:name="com.huawei.android.totemweather" />
+        <package android:name="com.miui.weather2" />
+        <package android:name="net.oneplus.weather" />
+        <package android:name="com.nothing.weather" />
+        <package android:name="com.accuweather.android" />
+        <package android:name="com.weather.Weather" />
+        <package android:name="com.yahoo.mobile.client.android.weather" />
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.NothingWidget">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.NothingWidget"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- AppWidget configure screens (launcher must be able to start them). -->
+        <activity
+            android:name="com.phoenix.nothingwidget.widgets.round_clock.RoundClockConfigActivity"
+            android:exported="true"
+            android:label="@string/widget_customization_label"
+            android:theme="@style/Theme.NothingWidget"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.phoenix.nothingwidget.widgets.weather.WeatherConfigActivity"
+            android:exported="true"
+            android:label="@string/widget_customization_label"
+            android:theme="@style/Theme.NothingWidget"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <!-- Exported only for system AppWidget / alarm broadcasts; internal refresh uses explicit intents. -->
+        <receiver
+            android:name="com.phoenix.nothingwidget.widgets.round_clock.RoundClockWidgetReceiver"
+            android:exported="true"
+            android:label="@string/widget_round_clock_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.app.action.NEXT_ALARM_CLOCK_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_round_clock_info" />
+        </receiver>
+
+        <receiver
+            android:name="com.phoenix.nothingwidget.widgets.weather.WeatherWidgetReceiver"
+            android:exported="true"
+            android:label="@string/widget_weather_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_weather_info" />
+        </receiver>
+    </application>
+
+</manifest>

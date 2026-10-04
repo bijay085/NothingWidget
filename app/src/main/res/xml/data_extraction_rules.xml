@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Location data (coordinates + city) and the weather cache stay on-device. -->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="file" path="datastore/weather_location.preferences_pb" />
+        <exclude domain="sharedpref" path="weather_widget_cache.xml" />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="file" path="datastore/weather_location.preferences_pb" />
+        <exclude domain="sharedpref" path="weather_widget_cache.xml" />
+    </device-transfer>
+</data-extraction-rules>

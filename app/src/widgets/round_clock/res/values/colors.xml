@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Softened near-black circle (OLED, not pure #000000) -->
+    <!-- Distinct from pure black so Black vs Dark Navy is obvious on OLED -->
+    <color name="round_clock_background">#243B5C</color>
+
+    <!-- Brightness hierarchy on OLED black -->
+    <color name="round_clock_text_clock">#FFFFFF</color>
+    <color name="round_clock_text_date">#FFFFFF</color>
+    <color name="round_clock_text_alarm">#F2F2F2</color>
+
+    <!-- Accent (not white) -->
+    <color name="round_clock_alarm_icon">#FF6B6B</color>
+    <color name="round_clock_date_underline">#E53935</color>
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="32dp"
+    android:viewportWidth="100"
+    android:viewportHeight="32">
+
+    <!-- Soft outer glow (slightly quieter) -->
+    <path
+        android:fillColor="#66FF1E1E"
+        android:pathData="M2,6 C26,34 74,34 98,6 L92,4 C70,28 30,28 8,4 Z" />
+
+    <!-- Mid bloom -->
+    <path
+        android:fillColor="#99FF3333"
+        android:pathData="M10,8 C30,28 70,28 90,8 L84,7 C66,22 34,22 16,7 Z" />
+
+    <!-- Core -->
+    <path
+        android:fillColor="#DDFF3B3B"
+        android:pathData="M18,10 C36,24 64,24 82,10 L78,9 C62,19 38,19 22,9 Z" />
+
+    <!-- Sharp center stroke -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M16,12 C36,24 64,24 84,12"
+        android:strokeWidth="3.5"
+        android:strokeColor="#EEFF6666"
+        android:strokeLineCap="round" />
+</vector>

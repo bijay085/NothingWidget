@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Scales with cell; fixed-dp children keep default 2x2 look and gain space when larger -->
+    <RelativeLayout
+        android:id="@+id/widget_round_clock_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@drawable/round_clock_background"
+        android:clipToOutline="true"
+        android:padding="12dp">
+
+        <!-- Primary clock: left, shifted slightly toward center -->
+        <LinearLayout
+            android:id="@+id/round_clock_time_block"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:paddingEnd="4dp">
+
+            <TextClock
+                android:id="@+id/round_clock_hour"
+                style="@style/RoundClockDigits"
+                android:format12Hour="hh"
+                android:format24Hour="hh" />
+
+            <TextClock
+                android:id="@+id/round_clock_hour_sans"
+                style="@style/RoundClockDigits.Clean"
+                android:format12Hour="hh"
+                android:format24Hour="hh"
+                android:visibility="gone" />
+
+            <TextClock
+                android:id="@+id/round_clock_hour_digital"
+                style="@style/RoundClockDigits.Digital"
+                android:format12Hour="hh"
+                android:format24Hour="hh"
+                android:visibility="gone" />
+
+            <TextClock
+                android:id="@+id/round_clock_hour_futuristic"
+                style="@style/RoundClockDigits.Futuristic"
+                android:format12Hour="hh"
+                android:format24Hour="hh"
+                android:visibility="gone" />
+
+            <TextClock
+                android:id="@+id/round_clock_hour_pixel"
+                style="@style/RoundClockDigits.PixelMono"
+                android:format12Hour="hh"
+                android:format24Hour="hh"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <TextClock
+                    android:id="@+id/round_clock_minute"
+                    style="@style/RoundClockDigits"
+                    android:format12Hour="mm"
+                    android:format24Hour="mm" />
+
+                <TextClock
+                    android:id="@+id/round_clock_minute_sans"
+                    style="@style/RoundClockDigits.Clean"
+                    android:format12Hour="mm"
+                    android:format24Hour="mm"
+                    android:visibility="gone" />
+
+                <TextClock
+                    android:id="@+id/round_clock_minute_digital"
+                    style="@style/RoundClockDigits.Digital"
+                    android:format12Hour="mm"
+                    android:format24Hour="mm"
+                    android:visibility="gone" />
+
+                <TextClock
+                    android:id="@+id/round_clock_minute_futuristic"
+                    style="@style/RoundClockDigits.Futuristic"
+                    android:format12Hour="mm"
+                    android:format24Hour="mm"
+                    android:visibility="gone" />
+
+                <TextClock
+                    android:id="@+id/round_clock_minute_pixel"
+                    style="@style/RoundClockDigits.PixelMono"
+                    android:format12Hour="mm"
+                    android:format24Hour="mm"
+                    android:visibility="gone" />
+
+                <TextClock
+                    android:id="@+id/round_clock_ampm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:format12Hour="a"
+                    android:format24Hour="a"
+                    android:includeFontPadding="false"
+                    android:textAllCaps="true"
+                    android:textColor="@color/round_clock_text_clock"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Secondary date: inward from right edge -->
+        <LinearLayout
+            android:id="@+id/round_clock_date_block"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextClock
+                    android:id="@+id/round_clock_day"
+                    style="@style/RoundClockDate"
+                    android:format12Hour="EEE"
+                    android:format24Hour="EEE" />
+
+                <TextClock
+                    android:id="@+id/round_clock_day_ndot"
+                    style="@style/RoundClockDate.Ndot"
+                    android:format12Hour="EEE"
+                    android:format24Hour="EEE"
+                    android:visibility="gone" />
+
+                <TextClock
+                    android:id="@+id/round_clock_day_digital"
+                    style="@style/RoundClockDate.Digital"
+                    android:format12Hour="EEE"
+                    android:format24Hour="EEE"
+                    android:visibility="gone" />
+
+                <TextClock
+                    android:id="@+id/round_clock_day_clean"
+                    style="@style/RoundClockDate.Clean"
+                    android:format12Hour="EEE"
+                    android:format24Hour="EEE"
+                    android:visibility="gone" />
+
+                <TextClock
+                    android:id="@+id/round_clock_day_spooky"
+                    style="@style/RoundClockDate.DarkSpooky"
+                    android:format12Hour="EEE"
+                    android:format24Hour="EEE"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <TextClock
+                    android:id="@+id/round_clock_date"
+                    style="@style/RoundClockDate"
+                    android:format12Hour="dd"
+                    android:format24Hour="dd" />
+
+                <TextClock
+                    android:id="@+id/round_clock_date_ndot"
+                    style="@style/RoundClockDate.Ndot"
+                    android:format12Hour="dd"
+                    android:format24Hour="dd"
+                    android:visibility="gone" />
+
+                <TextClock
+                    android:id="@+id/round_clock_date_digital"
+                    style="@style/RoundClockDate.Digital"
+                    android:format12Hour="dd"
+                    android:format24Hour="dd"
+                    android:visibility="gone" />
+
+                <TextClock
+                    android:id="@+id/round_clock_date_clean"
+                    style="@style/RoundClockDate.Clean"
+                    android:format12Hour="dd"
+                    android:format24Hour="dd"
+                    android:visibility="gone" />
+
+                <TextClock
+                    android:id="@+id/round_clock_date_spooky"
+                    style="@style/RoundClockDate.DarkSpooky"
+                    android:format12Hour="dd"
+                    android:format24Hour="dd"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <ImageView
+                android:id="@+id/round_clock_date_underline"
+                android:layout_width="20dp"
+                android:layout_height="1.5dp"
+                android:layout_marginTop="5dp"
+                android:contentDescription="@null"
+                android:src="@drawable/round_clock_date_underline" />
+        </LinearLayout>
+
+        <!-- Tertiary alarm: lower, between date and glow -->
+        <LinearLayout
+            android:id="@+id/round_clock_alarm_block"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/round_clock_accent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="0dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/round_clock_alarm_icon_text"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_alarm" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/round_clock_alarm"
+                    style="@style/RoundClockAlarm.Clean" />
+
+                <TextView
+                    android:id="@+id/round_clock_alarm_digital"
+                    style="@style/RoundClockAlarm.Digital"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/round_clock_alarm_spooky"
+                    style="@style/RoundClockAlarm.DarkSpooky"
+                    android:visibility="gone" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- Red glow unchanged -->
+        <ImageView
+            android:id="@+id/round_clock_accent"
+            android:layout_width="88dp"
+            android:layout_height="28dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="-9dp"
+            android:contentDescription="@null"
+            android:src="@drawable/round_clock_accent" />
+    </RelativeLayout>
+</FrameLayout>

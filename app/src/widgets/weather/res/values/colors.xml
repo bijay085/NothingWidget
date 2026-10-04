@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="weather_text_primary">#FFFFFF</color>
+    <color name="weather_text_secondary">#D0D6E5</color>
+    <color name="weather_text_muted">#A5B0C5</color>
+    <color name="weather_accent">#7C6CFF</color>
+    <color name="weather_icon_sun">#FFD54F</color>
+    <color name="weather_icon_sun_glow">#66FFD54F</color>
+    <color name="weather_icon_cloud">#E8EDF8</color>
+    <color name="weather_icon_cloud_soft">#C5CDDE</color>
+    <color name="weather_icon_cloud_shadow">#99A3B8</color>
+    <color name="weather_icon_rain">#9AA8FF</color>
+    <color name="weather_icon_snow">#E8EDF8</color>
+    <color name="weather_icon_lightning">#FFD54F</color>
+</resources>

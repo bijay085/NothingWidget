@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="12dp"
+    android:height="12dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Outer ring (hollow alarm face) -->
+    <path
+        android:fillColor="@color/round_clock_alarm_icon"
+        android:fillType="evenOdd"
+        android:pathData="M12,6.25c-3.45,0 -6.25,2.8 -6.25,6.25s2.8,6.25 6.25,6.25 6.25,-2.8 6.25,-6.25 -2.8,-6.25 -6.25,-6.25zM12,7.75c2.62,0 4.75,2.13 4.75,4.75s-2.13,4.75 -4.75,4.75 -4.75,-2.13 -4.75,-4.75 2.13,-4.75 4.75,-4.75z" />
+
+    <!-- Clock hands -->
+    <path
+        android:fillColor="@color/round_clock_alarm_icon"
+        android:pathData="M11.4,9.2h1.2v3.35l2.35,1.4 -0.65,1.1 -2.9,-1.75z" />
+
+    <!-- Left bell leg -->
+    <path
+        android:fillColor="@color/round_clock_alarm_icon"
+        android:pathData="M4.9,4.6l1.15,-1.15 2.7,2.7 -1.15,1.15z" />
+
+    <!-- Right bell leg -->
+    <path
+        android:fillColor="@color/round_clock_alarm_icon"
+        android:pathData="M18.0,3.45l1.15,1.15 -2.7,2.7 -1.15,-1.15z" />
+</vector>

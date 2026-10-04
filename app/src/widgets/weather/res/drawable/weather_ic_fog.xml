@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="@color/weather_icon_cloud"
+        android:fillAlpha="0.95"
+        android:pathData="M8.0,14.5h32.0c1.0,0 1.8,0.8 1.8,1.8s-0.8,1.8 -1.8,1.8H8.0c-1.0,0 -1.8,-0.8 -1.8,-1.8s0.8,-1.8 1.8,-1.8z" />
+    <path
+        android:fillColor="@color/weather_icon_cloud_soft"
+        android:fillAlpha="0.8"
+        android:pathData="M11.0,21.5h26.0c1.0,0 1.8,0.8 1.8,1.8s-0.8,1.8 -1.8,1.8H11.0c-1.0,0 -1.8,-0.8 -1.8,-1.8s0.8,-1.8 1.8,-1.8z" />
+    <path
+        android:fillColor="@color/weather_accent"
+        android:fillAlpha="0.7"
+        android:pathData="M8.0,28.5h32.0c1.0,0 1.8,0.8 1.8,1.8s-0.8,1.8 -1.8,1.8H8.0c-1.0,0 -1.8,-0.8 -1.8,-1.8s0.8,-1.8 1.8,-1.8z" />
+    <path
+        android:fillColor="@color/weather_icon_cloud"
+        android:fillAlpha="0.55"
+        android:pathData="M13.0,35.5h22.0c1.0,0 1.8,0.8 1.8,1.8s-0.8,1.8 -1.8,1.8H13.0c-1.0,0 -1.8,-0.8 -1.8,-1.8s0.8,-1.8 1.8,-1.8z" />
+</vector>

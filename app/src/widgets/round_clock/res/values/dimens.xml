@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="round_clock_text_time">36sp</dimen>
+    <dimen name="round_clock_text_time_digital">32sp</dimen>
+</resources>

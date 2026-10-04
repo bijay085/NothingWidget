@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="@color/weather_icon_cloud"
+        android:pathData="M12.5,25.2c-4.15,0 -7.5,-3.35 -7.5,-7.5 0,-3.5 2.4,-6.45 5.65,-7.3C11.4,5.7 15.9,3.2 21.0,3.2c5.1,0 9.4,2.85 10.8,7.0 3.85,0.3 6.95,3.5 6.95,7.45 0,4.15 -3.35,7.5 -7.5,7.5H12.5z" />
+    <!-- Snow particles -->
+    <path
+        android:fillColor="@color/weather_icon_snow"
+        android:pathData="M15.0,29.2h3.2v3.2H15.0z" />
+    <path
+        android:fillColor="@color/weather_accent"
+        android:pathData="M22.0,32.6h2.8v2.8H22.0z" />
+    <path
+        android:fillColor="@color/weather_icon_snow"
+        android:pathData="M29.0,28.8h3.0v3.0H29.0z" />
+    <path
+        android:fillColor="@color/weather_icon_snow"
+        android:fillAlpha="0.85"
+        android:pathData="M18.4,36.8h2.4v2.4h-2.4z" />
+    <path
+        android:fillColor="@color/weather_accent"
+        android:fillAlpha="0.8"
+        android:pathData="M26.4,37.6h2.3v2.3h-2.3z" />
+</vector>

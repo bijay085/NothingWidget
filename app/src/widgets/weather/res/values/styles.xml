@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="WeatherTemperature">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">NDot55All</item>
+        <item name="android:gravity">start</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:text">@string/widget_weather_mock_temperature</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textColor">@color/weather_text_primary</item>
+        <item name="android:textSize">@dimen/weather_text_temperature</item>
+    </style>
+
+    <style name="WeatherTemperature.Clean">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="WeatherTemperature.Digital">
+        <item name="android:fontFamily">Lettera</item>
+        <item name="android:textSize">@dimen/weather_text_temperature_digital</item>
+    </style>
+
+    <style name="WeatherTemperature.Futuristic">
+        <item name="android:fontFamily">@font/futuristic</item>
+    </style>
+
+    <style name="WeatherTemperature.PixelMono">
+        <item name="android:fontFamily">@font/pixel_mono</item>
+    </style>
+
+    <style name="WeatherSecondaryText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/weather_text_secondary</item>
+    </style>
+
+    <style name="WeatherSecondaryText.Clean">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="WeatherSecondaryText.Digital">
+        <item name="android:fontFamily">Lettera</item>
+    </style>
+
+    <style name="WeatherSecondaryText.Futuristic">
+        <item name="android:fontFamily">@font/futuristic</item>
+    </style>
+
+    <style name="WeatherSecondaryText.DarkSpooky">
+        <item name="android:fontFamily">@font/dark_spooky</item>
+    </style>
+</resources>

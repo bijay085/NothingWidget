@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_weather_name">Weather</string>
+    <string name="widget_weather_description">Current weather at a glance</string>
+    <string name="widget_weather_icon_description">Weather condition</string>
+    <string name="widget_weather_mock_temperature">18°</string>
+    <string name="widget_weather_mock_unit">C</string>
+    <string name="widget_weather_mock_condition">Cloudy</string>
+    <string name="widget_weather_location_unavailable">Kathmandu</string>
+</resources>

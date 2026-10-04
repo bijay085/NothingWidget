@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Hour / minute digits. Font variants differ only in fontFamily. -->
+    <style name="RoundClockDigits">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">NDot55All</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:textColor">@color/round_clock_text_clock</item>
+        <item name="android:textSize">@dimen/round_clock_text_time</item>
+    </style>
+
+    <style name="RoundClockDigits.Clean">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="RoundClockDigits.Digital">
+        <item name="android:fontFamily">Lettera</item>
+        <item name="android:textSize">@dimen/round_clock_text_time_digital</item>
+    </style>
+
+    <style name="RoundClockDigits.Futuristic">
+        <item name="android:fontFamily">@font/futuristic</item>
+    </style>
+
+    <style name="RoundClockDigits.PixelMono">
+        <item name="android:fontFamily">@font/pixel_mono</item>
+    </style>
+
+    <!-- Date (day + number). Default matches the previous google-sans-text look. -->
+    <style name="RoundClockDate">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">google-sans-text</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/round_clock_text_date</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="RoundClockDate.Clean">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="RoundClockDate.Ndot">
+        <item name="android:fontFamily">NDot55All</item>
+    </style>
+
+    <style name="RoundClockDate.Digital">
+        <item name="android:fontFamily">Lettera</item>
+    </style>
+
+    <style name="RoundClockDate.DarkSpooky">
+        <item name="android:fontFamily">@font/dark_spooky</item>
+    </style>
+
+    <style name="RoundClockAlarm">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">3dp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:text">--:--</item>
+        <item name="android:textColor">@color/round_clock_text_alarm</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="RoundClockAlarm.Clean">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="RoundClockAlarm.Digital">
+        <item name="android:fontFamily">Lettera</item>
+        <item name="android:textFontWeight">300</item>
+    </style>
+
+    <style name="RoundClockAlarm.DarkSpooky">
+        <item name="android:fontFamily">@font/dark_spooky</item>
+    </style>
+</resources>
