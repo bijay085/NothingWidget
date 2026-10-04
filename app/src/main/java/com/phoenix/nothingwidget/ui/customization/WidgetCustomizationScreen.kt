@@ -124,6 +124,7 @@ fun WidgetCustomizationScreen(
 
         PrimaryActionButton(
             text = "Apply",
+            modifier = Modifier.fillMaxWidth(),
             enabled = config != saved,
             onClick = {
                 scope.launch {
@@ -136,6 +137,7 @@ fun WidgetCustomizationScreen(
 
         SecondaryActionButton(
             text = "Reset to default",
+            modifier = Modifier.fillMaxWidth(),
             accent = false,
             onClick = {
                 scope.launch {

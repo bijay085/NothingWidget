@@ -5,7 +5,7 @@ import androidx.compose.animation.core.spring
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -17,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.phoenix.nothingwidget.ui.theme.AppTheme
 
@@ -50,10 +51,10 @@ fun PrimaryActionButton(
         enabled = enabled,
         interactionSource = interactionSource,
         modifier = modifier
-            .fillMaxWidth()
             .height(dimensions.buttonHeight)
             .pressScale(pressed),
         shape = ButtonShape,
+        contentPadding = PaddingValues(horizontal = 12.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = colors.primary,
             contentColor = colors.onPrimary,
@@ -65,7 +66,12 @@ fun PrimaryActionButton(
             pressedElevation = 0.dp,
         ),
     ) {
-        Text(text = text, style = AppTheme.typography.button)
+        Text(
+            text = text,
+            style = AppTheme.typography.button,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+        )
     }
 }
 
@@ -88,16 +94,22 @@ fun SecondaryActionButton(
         onClick = onClick,
         interactionSource = interactionSource,
         modifier = modifier
-            .fillMaxWidth()
             .height(dimensions.buttonHeight)
             .pressScale(pressed),
         shape = ButtonShape,
         border = BorderStroke(1.dp, borderColor),
+        contentPadding = PaddingValues(horizontal = 12.dp),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = if (accent) colors.primary.copy(alpha = 0.08f) else colors.surfaceVariant,
             contentColor = contentColor,
         ),
     ) {
-        Text(text = text, style = AppTheme.typography.button, color = contentColor)
+        Text(
+            text = text,
+            style = AppTheme.typography.button,
+            color = contentColor,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+        )
     }
 }

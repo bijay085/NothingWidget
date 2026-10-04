@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -115,16 +116,24 @@ fun WidgetCard(
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        PrimaryActionButton(
-            text = "Add to Home Screen",
-            onClick = onAddToHomeClick,
-        )
-
         if (onCustomizeClick != null) {
-            Spacer(modifier = Modifier.height(10.dp))
-            SecondaryActionButton(
-                text = "Customize",
-                onClick = onCustomizeClick,
+            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                SecondaryActionButton(
+                    text = "Customize",
+                    onClick = onCustomizeClick,
+                    modifier = Modifier.weight(1f),
+                )
+                PrimaryActionButton(
+                    text = "Add to Home",
+                    onClick = onAddToHomeClick,
+                    modifier = Modifier.weight(1f),
+                )
+            }
+        } else {
+            PrimaryActionButton(
+                text = "Add to Home Screen",
+                onClick = onAddToHomeClick,
+                modifier = Modifier.fillMaxWidth(),
             )
         }
     }
