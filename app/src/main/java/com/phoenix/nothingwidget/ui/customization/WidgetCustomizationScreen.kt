@@ -17,9 +17,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -44,6 +41,8 @@ import com.phoenix.nothingwidget.core.widget_config.StylePresets
 import com.phoenix.nothingwidget.core.widget_config.WidgetCustomization
 import com.phoenix.nothingwidget.core.widget_config.WidgetCustomizationConfig
 import com.phoenix.nothingwidget.core.widget_config.WidgetCustomizationRepository
+import com.phoenix.nothingwidget.ui.components.PrimaryActionButton
+import com.phoenix.nothingwidget.ui.components.SecondaryActionButton
 import com.phoenix.nothingwidget.core.widget_config.isSelected
 import com.phoenix.nothingwidget.core.widget_config.isTransparent
 import com.phoenix.nothingwidget.core.widget_config.with
@@ -123,7 +122,9 @@ fun WidgetCustomizationScreen(
             )
         }
 
-        Button(
+        PrimaryActionButton(
+            text = "Apply",
+            enabled = config != saved,
             onClick = {
                 scope.launch {
                     WidgetCustomizationRepository.apply(context, customization, config)
@@ -131,29 +132,18 @@ fun WidgetCustomizationScreen(
                     onApplied?.invoke()
                 }
             },
-            enabled = config != saved,
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(14.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = colors.primary,
-                contentColor = colors.onPrimary,
-            ),
-        ) {
-            Text(text = "Apply", style = typography.button)
-        }
+        )
 
-        OutlinedButton(
+        SecondaryActionButton(
+            text = "Reset to default",
+            accent = false,
             onClick = {
                 scope.launch {
                     WidgetCustomizationRepository.reset(context, customization)
                     draft = customization.defaults
                 }
             },
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(14.dp),
-        ) {
-            Text(text = "Reset to default", style = typography.button, color = colors.textSecondary)
-        }
+        )
     }
 }
 

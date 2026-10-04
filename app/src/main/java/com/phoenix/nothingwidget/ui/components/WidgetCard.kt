@@ -1,7 +1,6 @@
 package com.phoenix.nothingwidget.ui.components
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -16,9 +15,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -119,36 +115,17 @@ fun WidgetCard(
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Button(
+        PrimaryActionButton(
+            text = "Add to Home Screen",
             onClick = onAddToHomeClick,
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(14.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = colors.primary,
-                contentColor = colors.onPrimary,
-            ),
-        ) {
-            Text(
-                text = "Add to Home Screen",
-                style = typography.button,
-                color = colors.onPrimary,
-            )
-        }
+        )
 
         if (onCustomizeClick != null) {
             Spacer(modifier = Modifier.height(10.dp))
-            OutlinedButton(
+            SecondaryActionButton(
+                text = "Customize",
                 onClick = onCustomizeClick,
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(14.dp),
-                border = BorderStroke(1.dp, colors.primary),
-            ) {
-                Text(
-                    text = "Customize",
-                    style = typography.button,
-                    color = colors.primary,
-                )
-            }
+            )
         }
     }
 

@@ -16,6 +16,7 @@ data class ThemeDimensions(
     val filterChipHeight: Dp = 38.dp,
     val filterChipSpacing: Dp = 10.dp,
     val iconButton: Dp = 40.dp,
+    val buttonHeight: Dp = 50.dp,
     val headerToTabs: Dp = 14.dp,
     val tabsToContent: Dp = 28.dp,
     val itemSpacing: Dp = 16.dp,
