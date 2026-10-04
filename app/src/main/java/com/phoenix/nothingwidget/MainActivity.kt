@@ -17,6 +17,9 @@ import com.phoenix.nothingwidget.ui.data.ThemePreferences
 import com.phoenix.nothingwidget.ui.theme.AppTheme
 import com.phoenix.nothingwidget.ui.theme.AppThemeMode
 import com.phoenix.nothingwidget.ui.theme.NothingWidgetTheme
+import com.phoenix.nothingwidget.widgets.screen_time.ScreenTimeRepository
+import com.phoenix.nothingwidget.widgets.screen_time.ScreenTimeWidgetReceiver
+import com.phoenix.nothingwidget.widgets.screen_time_large.ScreenTimeLargeWidgetReceiver
 import com.phoenix.nothingwidget.widgets.weather.WeatherLocationHelper
 import com.phoenix.nothingwidget.widgets.weather.WeatherWidgetReceiver
 import kotlinx.coroutines.launch
@@ -26,6 +29,10 @@ class MainActivity : ComponentActivity() {
         super.onStart()
         if (WeatherLocationHelper.hasLocationPermission(this)) {
             WeatherWidgetReceiver.captureLocationThenRefresh(this)
+        }
+        if (ScreenTimeRepository.hasUsageAccess(this)) {
+            ScreenTimeWidgetReceiver.requestRefresh(this)
+            ScreenTimeLargeWidgetReceiver.requestRefresh(this)
         }
     }
 

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -21,8 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalContext
 import com.phoenix.nothingwidget.ui.components.BackgroundPattern
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import com.phoenix.nothingwidget.ui.components.FavoritesScreen
-import com.phoenix.nothingwidget.ui.components.RecentlyAddedScreen
+import com.phoenix.nothingwidget.ui.components.InstalledWidgetsScreen
+import com.phoenix.nothingwidget.ui.components.NewlyIntroducedScreen
 import com.phoenix.nothingwidget.ui.customization.WidgetCustomizationScreen
 import com.phoenix.nothingwidget.ui.data.FavoritesStore
 import com.phoenix.nothingwidget.ui.data.WidgetCatalog
@@ -31,6 +34,7 @@ import com.phoenix.nothingwidget.ui.model.WidgetItem
 import com.phoenix.nothingwidget.ui.settings.SettingsScreen
 import com.phoenix.nothingwidget.ui.theme.AppTheme
 import com.phoenix.nothingwidget.ui.theme.AppThemeMode
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 @Composable
@@ -40,13 +44,31 @@ fun MainScreen(
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    val catalog = remember { WidgetCatalog.all() }
+    val catalog = remember(context) { WidgetCatalog.all(context) }
     var destination by remember { mutableStateOf<AppDestination>(AppDestination.Library) }
     val favoritesFlow = remember { FavoritesStore.favoritesFlow(context) }
     val favoriteIds by favoritesFlow.collectAsState(initial = emptySet())
     val requestWeatherLocationPermission = rememberWeatherLocationPermissionRequester()
+    val requestScreenTimeUsageAccess = rememberScreenTimeUsageAccessRequester()
     WeatherLocationBootstrap()
 
+    var favoritesReady by remember { mutableStateOf(false) }
+    LaunchedEffect(favoritesFlow) {
+        favoritesFlow.first()
+        favoritesReady = true
+    }
+
+    var installedCounts by remember { mutableStateOf<Map<String, Int>>(emptyMap()) }
+    var installedReady by remember { mutableStateOf(false) }
+    LifecycleResumeEffect(catalog) {
+        installedCounts = installedWidgetCounts(context, catalog)
+        installedReady = true
+        onPauseOrDispose { }
+    }
+    val widgetsLoading = !favoritesReady || !installedReady
+    val installedWidgets = remember(catalog, installedCounts) {
+        catalog.filter { it.id in installedCounts }
+    }
     val recentWidgets = remember(catalog) { catalog.filter { it.isRecentlyAdded() } }
     val favoriteWidgets = remember(catalog, favoriteIds) {
         catalog.filter { it.id in favoriteIds }
@@ -59,12 +81,19 @@ fun MainScreen(
             context = context,
             widget = widget,
             requestLocationPermission = requestWeatherLocationPermission,
+            requestUsageAccess = requestScreenTimeUsageAccess,
         )
     }
     var customizeReturn by remember { mutableStateOf<AppDestination>(AppDestination.Library) }
     val onCustomizeClick: (WidgetItem) -> Unit = { widget ->
         customizeReturn = destination
         destination = AppDestination.Customize(widget.id)
+    }
+
+    BackHandler(
+        enabled = destination != AppDestination.Library && destination !is AppDestination.Customize,
+    ) {
+        destination = AppDestination.Library
     }
 
     when (val current = destination) {
@@ -77,9 +106,13 @@ fun MainScreen(
                 onFavoriteClick = onFavoriteClick,
                 onAddToHomeClick = onAddToHomeClick,
                 onCustomizeClick = onCustomizeClick,
+                installedTypeCount = installedWidgets.size,
+                installedInstanceCount = installedCounts.values.sum(),
                 recentCount = recentWidgets.size,
                 favoriteCount = favoriteWidgets.size,
-                onOpenRecentlyAdded = { destination = AppDestination.RecentlyAdded },
+                isLoading = widgetsLoading,
+                onOpenInstalled = { destination = AppDestination.Installed },
+                onOpenNewlyIntroduced = { destination = AppDestination.RecentlyAdded },
                 onOpenFavorites = { destination = AppDestination.Favorites },
                 onOpenSettings = { destination = AppDestination.Settings },
             )
@@ -93,15 +126,30 @@ fun MainScreen(
             }
         }
 
+        AppDestination.Installed -> {
+            SpecialDestinationHost {
+                InstalledWidgetsScreen(
+                    widgets = installedWidgets,
+                    favoriteIds = favoriteIds,
+                    onBack = { destination = AppDestination.Library },
+                    onFavoriteClick = onFavoriteClick,
+                    onAddToHomeClick = onAddToHomeClick,
+                    onCustomizeClick = onCustomizeClick,
+                    isLoading = widgetsLoading,
+                )
+            }
+        }
+
         AppDestination.RecentlyAdded -> {
             SpecialDestinationHost {
-                RecentlyAddedScreen(
+                NewlyIntroducedScreen(
                     widgets = recentWidgets,
                     favoriteIds = favoriteIds,
                     onBack = { destination = AppDestination.Library },
                     onFavoriteClick = onFavoriteClick,
                     onAddToHomeClick = onAddToHomeClick,
                     onCustomizeClick = onCustomizeClick,
+                    isLoading = widgetsLoading,
                 )
             }
         }
@@ -115,6 +163,7 @@ fun MainScreen(
                     onFavoriteClick = onFavoriteClick,
                     onAddToHomeClick = onAddToHomeClick,
                     onCustomizeClick = onCustomizeClick,
+                    isLoading = widgetsLoading,
                 )
             }
         }
@@ -127,7 +176,7 @@ fun MainScreen(
             } else {
                 val close = { destination = customizeReturn }
                 BackHandler(onBack = close)
-                SpecialDestinationHost {
+                SpecialDestinationHost(scrollable = false) {
                     WidgetCustomizationScreen(
                         widgetName = widget.name,
                         previewCircular = widget.previewCircular,
@@ -141,7 +190,10 @@ fun MainScreen(
 }
 
 @Composable
-private fun SpecialDestinationHost(content: @Composable () -> Unit) {
+private fun SpecialDestinationHost(
+    scrollable: Boolean = true,
+    content: @Composable () -> Unit,
+) {
     val colors = AppTheme.colors
     val dimensions = AppTheme.dimensions
 
@@ -159,11 +211,11 @@ private fun SpecialDestinationHost(content: @Composable () -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .statusBarsPadding()
-                .verticalScroll(rememberScrollState())
+                .then(if (scrollable) Modifier.verticalScroll(rememberScrollState()) else Modifier)
                 .padding(horizontal = dimensions.large)
                 .padding(
                     top = dimensions.large,
-                    bottom = dimensions.large + dimensions.medium,
+                    bottom = if (scrollable) dimensions.large + dimensions.medium else 0.dp,
                 ),
         ) {
             content()

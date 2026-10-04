@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_quick_actions_name">Quick Actions</string>
+    <string name="widget_quick_actions_description">Customizable shortcuts — resize wider for more, scroll for extras</string>
+    <string name="widget_quick_actions_qr">QR Scan</string>
+    <string name="widget_quick_actions_flash">Flash</string>
+    <string name="widget_quick_actions_flash_on">Flash On</string>
+    <string name="widget_quick_actions_camera">Camera</string>
+</resources>

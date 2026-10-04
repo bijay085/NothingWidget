@@ -16,7 +16,7 @@ import com.phoenix.nothingwidget.core.widget_config.StylePresets
 import com.phoenix.nothingwidget.core.widget_config.WidgetCustomizationConfig
 import com.phoenix.nothingwidget.core.widget_config.WidgetCustomizationRepository
 import com.phoenix.nothingwidget.core.widget_config.isTransparent
-import com.phoenix.nothingwidget.core.widget_config.setBackgroundRes
+import com.phoenix.nothingwidget.core.widget_config.setSolidBackground
 import com.phoenix.nothingwidget.core.widget_config.setTextColors
 import com.phoenix.nothingwidget.core.widget_config.setTextSizePx
 import com.phoenix.nothingwidget.core.widget_config.showFontVariant
@@ -108,7 +108,19 @@ object RoundClockRenderer {
         views.showFontVariant(date.fontFamily, DATE_VARIANTS, StylePresets.FONT_SANS)
         views.showFontVariant(alarm.fontFamily, ALARM_VARIANTS, StylePresets.FONT_SANS)
 
-        views.setBackgroundRes(R.id.widget_round_clock_root, backgroundRes(config.backgroundColor))
+        views.setSolidBackground(
+            viewId = R.id.widget_round_clock_root,
+            color = config.backgroundColor,
+            tintableBaseRes = R.drawable.round_clock_background_tintable,
+            transparentRes = R.drawable.round_clock_background_transparent,
+            presetResFor = { color ->
+                when (color) {
+                    RoundClockCustomization.COLOR_BLACK -> R.drawable.round_clock_background_black
+                    RoundClockCustomization.COLOR_DARK_NAVY -> R.drawable.round_clock_background
+                    else -> null
+                }
+            },
+        )
         views.setTextColors(time.textColor, *TIME_VIEWS)
         views.setTextColor(R.id.round_clock_ampm, time.textColor)
         views.setTextColors(date.textColor, *DATE_VIEWS)
@@ -165,12 +177,6 @@ object RoundClockRenderer {
             sizeSp.toFloat(),
             context.resources.displayMetrics,
         )
-
-    private fun backgroundRes(@androidx.annotation.ColorInt color: Int): Int = when {
-        isTransparent(color) -> R.drawable.round_clock_background_transparent
-        color == RoundClockCustomization.COLOR_BLACK -> R.drawable.round_clock_background_black
-        else -> R.drawable.round_clock_background
-    }
 
     private fun RemoteViews.setClockFormat(viewId: Int, format12: String, format24: String) {
         setCharSequence(viewId, "setFormat12Hour", format12)

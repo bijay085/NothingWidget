@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget description="Clock with date and alarm">
+    <tag label="2×2" />
+    <tag label="Fixed" />
+</widget>

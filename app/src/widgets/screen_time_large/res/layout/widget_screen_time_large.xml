@@ -1,0 +1,1041 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_screen_time_large_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/screen_time_large_background"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:paddingStart="18dp"
+    android:paddingTop="12dp"
+    android:paddingEnd="18dp"
+    android:paddingBottom="12dp">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/screen_time_large_label"
+            style="@style/ScreenTimeLargeLabel.Clean" />
+
+        <TextView
+            android:id="@+id/screen_time_large_label_digital"
+            style="@style/ScreenTimeLargeLabel.Digital"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/screen_time_large_label_futuristic"
+            style="@style/ScreenTimeLargeLabel.Futuristic"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/screen_time_large_label_pixel"
+            style="@style/ScreenTimeLargeLabel.PixelMono"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/screen_time_large_label_spooky"
+            style="@style/ScreenTimeLargeLabel.DarkSpooky"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp">
+
+        <TextView
+            android:id="@+id/screen_time_large_total"
+            style="@style/ScreenTimeLargeTotal.Clean" />
+
+        <TextView
+            android:id="@+id/screen_time_large_total_digital"
+            style="@style/ScreenTimeLargeTotal.Digital"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/screen_time_large_total_futuristic"
+            style="@style/ScreenTimeLargeTotal.Futuristic"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/screen_time_large_total_pixel"
+            style="@style/ScreenTimeLargeTotal.PixelMono"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/screen_time_large_total_spooky"
+            style="@style/ScreenTimeLargeTotal.DarkSpooky"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/screen_time_large_section"
+            style="@style/ScreenTimeLargeSection.Clean" />
+
+        <TextView
+            android:id="@+id/screen_time_large_section_digital"
+            style="@style/ScreenTimeLargeSection.Digital"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/screen_time_large_section_futuristic"
+            style="@style/ScreenTimeLargeSection.Futuristic"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/screen_time_large_section_pixel"
+            style="@style/ScreenTimeLargeSection.PixelMono"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/screen_time_large_section_spooky"
+            style="@style/ScreenTimeLargeSection.DarkSpooky"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/screen_time_large_app1_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/screen_time_large_app1_name"
+                style="@style/ScreenTimeLargeAppName.Clean"
+                android:text="@string/widget_screen_time_large_mock_app1" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app1_name_digital"
+                style="@style/ScreenTimeLargeAppName.Digital"
+                android:text="@string/widget_screen_time_large_mock_app1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app1_name_futuristic"
+                style="@style/ScreenTimeLargeAppName.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_app1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app1_name_pixel"
+                style="@style/ScreenTimeLargeAppName.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_app1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app1_name_spooky"
+                style="@style/ScreenTimeLargeAppName.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_app1"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/screen_time_large_app1_time"
+                style="@style/ScreenTimeLargeAppTime.Clean"
+                android:text="@string/widget_screen_time_large_mock_time1" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app1_time_digital"
+                style="@style/ScreenTimeLargeAppTime.Digital"
+                android:text="@string/widget_screen_time_large_mock_time1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app1_time_futuristic"
+                style="@style/ScreenTimeLargeAppTime.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_time1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app1_time_pixel"
+                style="@style/ScreenTimeLargeAppTime.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_time1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app1_time_spooky"
+                style="@style/ScreenTimeLargeAppTime.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_time1"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/screen_time_large_app2_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/screen_time_large_app2_name"
+                style="@style/ScreenTimeLargeAppName.Clean"
+                android:text="@string/widget_screen_time_large_mock_app2" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app2_name_digital"
+                style="@style/ScreenTimeLargeAppName.Digital"
+                android:text="@string/widget_screen_time_large_mock_app2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app2_name_futuristic"
+                style="@style/ScreenTimeLargeAppName.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_app2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app2_name_pixel"
+                style="@style/ScreenTimeLargeAppName.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_app2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app2_name_spooky"
+                style="@style/ScreenTimeLargeAppName.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_app2"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/screen_time_large_app2_time"
+                style="@style/ScreenTimeLargeAppTime.Clean"
+                android:text="@string/widget_screen_time_large_mock_time2" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app2_time_digital"
+                style="@style/ScreenTimeLargeAppTime.Digital"
+                android:text="@string/widget_screen_time_large_mock_time2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app2_time_futuristic"
+                style="@style/ScreenTimeLargeAppTime.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_time2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app2_time_pixel"
+                style="@style/ScreenTimeLargeAppTime.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_time2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app2_time_spooky"
+                style="@style/ScreenTimeLargeAppTime.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_time2"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/screen_time_large_app3_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/screen_time_large_app3_name"
+                style="@style/ScreenTimeLargeAppName.Clean"
+                android:text="@string/widget_screen_time_large_mock_app3" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app3_name_digital"
+                style="@style/ScreenTimeLargeAppName.Digital"
+                android:text="@string/widget_screen_time_large_mock_app3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app3_name_futuristic"
+                style="@style/ScreenTimeLargeAppName.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_app3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app3_name_pixel"
+                style="@style/ScreenTimeLargeAppName.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_app3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app3_name_spooky"
+                style="@style/ScreenTimeLargeAppName.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_app3"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/screen_time_large_app3_time"
+                style="@style/ScreenTimeLargeAppTime.Clean"
+                android:text="@string/widget_screen_time_large_mock_time3" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app3_time_digital"
+                style="@style/ScreenTimeLargeAppTime.Digital"
+                android:text="@string/widget_screen_time_large_mock_time3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app3_time_futuristic"
+                style="@style/ScreenTimeLargeAppTime.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_time3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app3_time_pixel"
+                style="@style/ScreenTimeLargeAppTime.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_time3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app3_time_spooky"
+                style="@style/ScreenTimeLargeAppTime.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_time3"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/screen_time_large_app4_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/screen_time_large_app4_name"
+                style="@style/ScreenTimeLargeAppName.Clean"
+                android:text="@string/widget_screen_time_large_mock_app1" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app4_name_digital"
+                style="@style/ScreenTimeLargeAppName.Digital"
+                android:text="@string/widget_screen_time_large_mock_app1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app4_name_futuristic"
+                style="@style/ScreenTimeLargeAppName.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_app1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app4_name_pixel"
+                style="@style/ScreenTimeLargeAppName.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_app1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app4_name_spooky"
+                style="@style/ScreenTimeLargeAppName.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_app1"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/screen_time_large_app4_time"
+                style="@style/ScreenTimeLargeAppTime.Clean"
+                android:text="@string/widget_screen_time_large_mock_time1" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app4_time_digital"
+                style="@style/ScreenTimeLargeAppTime.Digital"
+                android:text="@string/widget_screen_time_large_mock_time1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app4_time_futuristic"
+                style="@style/ScreenTimeLargeAppTime.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_time1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app4_time_pixel"
+                style="@style/ScreenTimeLargeAppTime.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_time1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app4_time_spooky"
+                style="@style/ScreenTimeLargeAppTime.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_time1"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/screen_time_large_app5_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/screen_time_large_app5_name"
+                style="@style/ScreenTimeLargeAppName.Clean"
+                android:text="@string/widget_screen_time_large_mock_app2" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app5_name_digital"
+                style="@style/ScreenTimeLargeAppName.Digital"
+                android:text="@string/widget_screen_time_large_mock_app2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app5_name_futuristic"
+                style="@style/ScreenTimeLargeAppName.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_app2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app5_name_pixel"
+                style="@style/ScreenTimeLargeAppName.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_app2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app5_name_spooky"
+                style="@style/ScreenTimeLargeAppName.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_app2"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/screen_time_large_app5_time"
+                style="@style/ScreenTimeLargeAppTime.Clean"
+                android:text="@string/widget_screen_time_large_mock_time2" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app5_time_digital"
+                style="@style/ScreenTimeLargeAppTime.Digital"
+                android:text="@string/widget_screen_time_large_mock_time2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app5_time_futuristic"
+                style="@style/ScreenTimeLargeAppTime.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_time2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app5_time_pixel"
+                style="@style/ScreenTimeLargeAppTime.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_time2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app5_time_spooky"
+                style="@style/ScreenTimeLargeAppTime.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_time2"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/screen_time_large_app6_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/screen_time_large_app6_name"
+                style="@style/ScreenTimeLargeAppName.Clean"
+                android:text="@string/widget_screen_time_large_mock_app3" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app6_name_digital"
+                style="@style/ScreenTimeLargeAppName.Digital"
+                android:text="@string/widget_screen_time_large_mock_app3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app6_name_futuristic"
+                style="@style/ScreenTimeLargeAppName.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_app3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app6_name_pixel"
+                style="@style/ScreenTimeLargeAppName.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_app3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app6_name_spooky"
+                style="@style/ScreenTimeLargeAppName.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_app3"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/screen_time_large_app6_time"
+                style="@style/ScreenTimeLargeAppTime.Clean"
+                android:text="@string/widget_screen_time_large_mock_time3" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app6_time_digital"
+                style="@style/ScreenTimeLargeAppTime.Digital"
+                android:text="@string/widget_screen_time_large_mock_time3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app6_time_futuristic"
+                style="@style/ScreenTimeLargeAppTime.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_time3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app6_time_pixel"
+                style="@style/ScreenTimeLargeAppTime.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_time3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app6_time_spooky"
+                style="@style/ScreenTimeLargeAppTime.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_time3"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/screen_time_large_app7_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/screen_time_large_app7_name"
+                style="@style/ScreenTimeLargeAppName.Clean"
+                android:text="@string/widget_screen_time_large_mock_app1" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app7_name_digital"
+                style="@style/ScreenTimeLargeAppName.Digital"
+                android:text="@string/widget_screen_time_large_mock_app1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app7_name_futuristic"
+                style="@style/ScreenTimeLargeAppName.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_app1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app7_name_pixel"
+                style="@style/ScreenTimeLargeAppName.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_app1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app7_name_spooky"
+                style="@style/ScreenTimeLargeAppName.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_app1"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/screen_time_large_app7_time"
+                style="@style/ScreenTimeLargeAppTime.Clean"
+                android:text="@string/widget_screen_time_large_mock_time1" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app7_time_digital"
+                style="@style/ScreenTimeLargeAppTime.Digital"
+                android:text="@string/widget_screen_time_large_mock_time1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app7_time_futuristic"
+                style="@style/ScreenTimeLargeAppTime.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_time1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app7_time_pixel"
+                style="@style/ScreenTimeLargeAppTime.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_time1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app7_time_spooky"
+                style="@style/ScreenTimeLargeAppTime.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_time1"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/screen_time_large_app8_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/screen_time_large_app8_name"
+                style="@style/ScreenTimeLargeAppName.Clean"
+                android:text="@string/widget_screen_time_large_mock_app2" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app8_name_digital"
+                style="@style/ScreenTimeLargeAppName.Digital"
+                android:text="@string/widget_screen_time_large_mock_app2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app8_name_futuristic"
+                style="@style/ScreenTimeLargeAppName.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_app2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app8_name_pixel"
+                style="@style/ScreenTimeLargeAppName.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_app2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app8_name_spooky"
+                style="@style/ScreenTimeLargeAppName.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_app2"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/screen_time_large_app8_time"
+                style="@style/ScreenTimeLargeAppTime.Clean"
+                android:text="@string/widget_screen_time_large_mock_time2" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app8_time_digital"
+                style="@style/ScreenTimeLargeAppTime.Digital"
+                android:text="@string/widget_screen_time_large_mock_time2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app8_time_futuristic"
+                style="@style/ScreenTimeLargeAppTime.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_time2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app8_time_pixel"
+                style="@style/ScreenTimeLargeAppTime.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_time2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app8_time_spooky"
+                style="@style/ScreenTimeLargeAppTime.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_time2"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/screen_time_large_app9_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/screen_time_large_app9_name"
+                style="@style/ScreenTimeLargeAppName.Clean"
+                android:text="@string/widget_screen_time_large_mock_app3" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app9_name_digital"
+                style="@style/ScreenTimeLargeAppName.Digital"
+                android:text="@string/widget_screen_time_large_mock_app3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app9_name_futuristic"
+                style="@style/ScreenTimeLargeAppName.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_app3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app9_name_pixel"
+                style="@style/ScreenTimeLargeAppName.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_app3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app9_name_spooky"
+                style="@style/ScreenTimeLargeAppName.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_app3"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/screen_time_large_app9_time"
+                style="@style/ScreenTimeLargeAppTime.Clean"
+                android:text="@string/widget_screen_time_large_mock_time3" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app9_time_digital"
+                style="@style/ScreenTimeLargeAppTime.Digital"
+                android:text="@string/widget_screen_time_large_mock_time3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app9_time_futuristic"
+                style="@style/ScreenTimeLargeAppTime.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_time3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app9_time_pixel"
+                style="@style/ScreenTimeLargeAppTime.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_time3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app9_time_spooky"
+                style="@style/ScreenTimeLargeAppTime.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_time3"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/screen_time_large_app10_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/screen_time_large_app10_name"
+                style="@style/ScreenTimeLargeAppName.Clean"
+                android:text="@string/widget_screen_time_large_mock_app1" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app10_name_digital"
+                style="@style/ScreenTimeLargeAppName.Digital"
+                android:text="@string/widget_screen_time_large_mock_app1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app10_name_futuristic"
+                style="@style/ScreenTimeLargeAppName.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_app1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app10_name_pixel"
+                style="@style/ScreenTimeLargeAppName.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_app1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app10_name_spooky"
+                style="@style/ScreenTimeLargeAppName.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_app1"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/screen_time_large_app10_time"
+                style="@style/ScreenTimeLargeAppTime.Clean"
+                android:text="@string/widget_screen_time_large_mock_time1" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app10_time_digital"
+                style="@style/ScreenTimeLargeAppTime.Digital"
+                android:text="@string/widget_screen_time_large_mock_time1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app10_time_futuristic"
+                style="@style/ScreenTimeLargeAppTime.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_time1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app10_time_pixel"
+                style="@style/ScreenTimeLargeAppTime.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_time1"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app10_time_spooky"
+                style="@style/ScreenTimeLargeAppTime.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_time1"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/screen_time_large_app11_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/screen_time_large_app11_name"
+                style="@style/ScreenTimeLargeAppName.Clean"
+                android:text="@string/widget_screen_time_large_mock_app2" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app11_name_digital"
+                style="@style/ScreenTimeLargeAppName.Digital"
+                android:text="@string/widget_screen_time_large_mock_app2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app11_name_futuristic"
+                style="@style/ScreenTimeLargeAppName.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_app2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app11_name_pixel"
+                style="@style/ScreenTimeLargeAppName.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_app2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app11_name_spooky"
+                style="@style/ScreenTimeLargeAppName.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_app2"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/screen_time_large_app11_time"
+                style="@style/ScreenTimeLargeAppTime.Clean"
+                android:text="@string/widget_screen_time_large_mock_time2" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app11_time_digital"
+                style="@style/ScreenTimeLargeAppTime.Digital"
+                android:text="@string/widget_screen_time_large_mock_time2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app11_time_futuristic"
+                style="@style/ScreenTimeLargeAppTime.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_time2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app11_time_pixel"
+                style="@style/ScreenTimeLargeAppTime.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_time2"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app11_time_spooky"
+                style="@style/ScreenTimeLargeAppTime.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_time2"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/screen_time_large_app12_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/screen_time_large_app12_name"
+                style="@style/ScreenTimeLargeAppName.Clean"
+                android:text="@string/widget_screen_time_large_mock_app3" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app12_name_digital"
+                style="@style/ScreenTimeLargeAppName.Digital"
+                android:text="@string/widget_screen_time_large_mock_app3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app12_name_futuristic"
+                style="@style/ScreenTimeLargeAppName.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_app3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app12_name_pixel"
+                style="@style/ScreenTimeLargeAppName.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_app3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app12_name_spooky"
+                style="@style/ScreenTimeLargeAppName.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_app3"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/screen_time_large_app12_time"
+                style="@style/ScreenTimeLargeAppTime.Clean"
+                android:text="@string/widget_screen_time_large_mock_time3" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app12_time_digital"
+                style="@style/ScreenTimeLargeAppTime.Digital"
+                android:text="@string/widget_screen_time_large_mock_time3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app12_time_futuristic"
+                style="@style/ScreenTimeLargeAppTime.Futuristic"
+                android:text="@string/widget_screen_time_large_mock_time3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app12_time_pixel"
+                style="@style/ScreenTimeLargeAppTime.PixelMono"
+                android:text="@string/widget_screen_time_large_mock_time3"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/screen_time_large_app12_time_spooky"
+                style="@style/ScreenTimeLargeAppTime.DarkSpooky"
+                android:text="@string/widget_screen_time_large_mock_time3"
+                android:visibility="gone" />
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

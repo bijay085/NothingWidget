@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ScreenTimeLargeTotal">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:text">@string/widget_screen_time_large_mock_total</item>
+        <item name="android:textColor">@color/screen_time_large_text</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="ScreenTimeLargeTotal.Clean">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="ScreenTimeLargeTotal.Digital">
+        <item name="android:fontFamily">Lettera</item>
+    </style>
+    <style name="ScreenTimeLargeTotal.Futuristic">
+        <item name="android:fontFamily">@font/futuristic</item>
+    </style>
+    <style name="ScreenTimeLargeTotal.PixelMono">
+        <item name="android:fontFamily">@font/pixel_mono</item>
+    </style>
+    <style name="ScreenTimeLargeTotal.DarkSpooky">
+        <item name="android:fontFamily">@font/dark_spooky</item>
+    </style>
+
+    <style name="ScreenTimeLargeLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:text">@string/widget_screen_time_large_today</item>
+        <item name="android:textColor">@color/screen_time_large_secondary</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="ScreenTimeLargeLabel.Clean">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="ScreenTimeLargeLabel.Digital">
+        <item name="android:fontFamily">Lettera</item>
+    </style>
+    <style name="ScreenTimeLargeLabel.Futuristic">
+        <item name="android:fontFamily">@font/futuristic</item>
+    </style>
+    <style name="ScreenTimeLargeLabel.PixelMono">
+        <item name="android:fontFamily">@font/pixel_mono</item>
+    </style>
+    <style name="ScreenTimeLargeLabel.DarkSpooky">
+        <item name="android:fontFamily">@font/dark_spooky</item>
+    </style>
+
+    <style name="ScreenTimeLargeSection">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:text">@string/widget_screen_time_large_top_apps</item>
+        <item name="android:textColor">@color/screen_time_large_accent</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="ScreenTimeLargeSection.Clean">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="ScreenTimeLargeSection.Digital">
+        <item name="android:fontFamily">Lettera</item>
+    </style>
+    <style name="ScreenTimeLargeSection.Futuristic">
+        <item name="android:fontFamily">@font/futuristic</item>
+    </style>
+    <style name="ScreenTimeLargeSection.PixelMono">
+        <item name="android:fontFamily">@font/pixel_mono</item>
+    </style>
+    <style name="ScreenTimeLargeSection.DarkSpooky">
+        <item name="android:fontFamily">@font/dark_spooky</item>
+    </style>
+
+    <style name="ScreenTimeLargeAppName">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/screen_time_large_text</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="ScreenTimeLargeAppName.Clean">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="ScreenTimeLargeAppName.Digital">
+        <item name="android:fontFamily">Lettera</item>
+    </style>
+    <style name="ScreenTimeLargeAppName.Futuristic">
+        <item name="android:fontFamily">@font/futuristic</item>
+    </style>
+    <style name="ScreenTimeLargeAppName.PixelMono">
+        <item name="android:fontFamily">@font/pixel_mono</item>
+    </style>
+    <style name="ScreenTimeLargeAppName.DarkSpooky">
+        <item name="android:fontFamily">@font/dark_spooky</item>
+    </style>
+
+    <style name="ScreenTimeLargeAppTime">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:textColor">@color/screen_time_large_secondary</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="ScreenTimeLargeAppTime.Clean">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="ScreenTimeLargeAppTime.Digital">
+        <item name="android:fontFamily">Lettera</item>
+    </style>
+    <style name="ScreenTimeLargeAppTime.Futuristic">
+        <item name="android:fontFamily">@font/futuristic</item>
+    </style>
+    <style name="ScreenTimeLargeAppTime.PixelMono">
+        <item name="android:fontFamily">@font/pixel_mono</item>
+    </style>
+    <style name="ScreenTimeLargeAppTime.DarkSpooky">
+        <item name="android:fontFamily">@font/dark_spooky</item>
+    </style>
+</resources>

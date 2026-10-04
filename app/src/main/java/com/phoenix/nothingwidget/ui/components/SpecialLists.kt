@@ -13,7 +13,7 @@ import com.phoenix.nothingwidget.ui.model.WidgetItem
 import com.phoenix.nothingwidget.ui.theme.AppTheme
 
 @Composable
-fun RecentlyAddedScreen(
+fun InstalledWidgetsScreen(
     widgets: List<WidgetItem>,
     favoriteIds: Set<String>,
     onBack: () -> Unit,
@@ -21,18 +21,46 @@ fun RecentlyAddedScreen(
     onAddToHomeClick: (WidgetItem) -> Unit,
     onCustomizeClick: (WidgetItem) -> Unit,
     modifier: Modifier = Modifier,
+    isLoading: Boolean = false,
 ) {
     SpecialDestinationScaffold(
-        title = "Recently Added",
+        title = "Installed Widgets",
         widgets = widgets,
         favoriteIds = favoriteIds,
-        emptyTitle = "Nothing recent",
-        emptyMessage = "Widgets added in the last 10 days will show up here.",
+        emptyTitle = "Nothing on your home screen",
+        emptyMessage = "Widgets you place on the home screen will show up here.",
         onBack = onBack,
         onFavoriteClick = onFavoriteClick,
         onAddToHomeClick = onAddToHomeClick,
         onCustomizeClick = onCustomizeClick,
         modifier = modifier,
+        isLoading = isLoading,
+    )
+}
+
+@Composable
+fun NewlyIntroducedScreen(
+    widgets: List<WidgetItem>,
+    favoriteIds: Set<String>,
+    onBack: () -> Unit,
+    onFavoriteClick: (String) -> Unit,
+    onAddToHomeClick: (WidgetItem) -> Unit,
+    onCustomizeClick: (WidgetItem) -> Unit,
+    modifier: Modifier = Modifier,
+    isLoading: Boolean = false,
+) {
+    SpecialDestinationScaffold(
+        title = "Newly Introduced",
+        widgets = widgets,
+        favoriteIds = favoriteIds,
+        emptyTitle = "Nothing new",
+        emptyMessage = "Widgets introduced in the last 10 days will show up here.",
+        onBack = onBack,
+        onFavoriteClick = onFavoriteClick,
+        onAddToHomeClick = onAddToHomeClick,
+        onCustomizeClick = onCustomizeClick,
+        modifier = modifier,
+        isLoading = isLoading,
     )
 }
 
@@ -45,6 +73,7 @@ fun FavoritesScreen(
     onAddToHomeClick: (WidgetItem) -> Unit,
     onCustomizeClick: (WidgetItem) -> Unit,
     modifier: Modifier = Modifier,
+    isLoading: Boolean = false,
 ) {
     SpecialDestinationScaffold(
         title = "Favorites",
@@ -56,6 +85,7 @@ fun FavoritesScreen(
         onFavoriteClick = onFavoriteClick,
         onAddToHomeClick = onAddToHomeClick,
         onCustomizeClick = onCustomizeClick,
+        isLoading = isLoading,
         modifier = modifier,
     )
 }
@@ -72,21 +102,13 @@ private fun SpecialDestinationScaffold(
     onAddToHomeClick: (WidgetItem) -> Unit,
     onCustomizeClick: (WidgetItem) -> Unit,
     modifier: Modifier = Modifier,
+    isLoading: Boolean = false,
 ) {
-    val colors = AppTheme.colors
-    val typography = AppTheme.typography
     val dimensions = AppTheme.dimensions
 
     Column(modifier = modifier.fillMaxWidth()) {
-        Text(
-            text = "‹ Back",
-            style = typography.subtitle,
-            color = colors.primary,
-            modifier = Modifier
-                .clickable(onClick = onBack)
-                .padding(vertical = dimensions.small / 2),
-        )
-        Spacer(modifier = Modifier.height(dimensions.small))
+        BackButton(onClick = onBack)
+        Spacer(modifier = Modifier.height(dimensions.medium))
         WidgetList(
             title = title,
             widgets = widgets,
@@ -96,6 +118,8 @@ private fun SpecialDestinationScaffold(
             onFavoriteClick = onFavoriteClick,
             onAddToHomeClick = onAddToHomeClick,
             onCustomizeClick = onCustomizeClick,
+            isLoading = isLoading,
+            skeletonCount = 3,
         )
     }
 }

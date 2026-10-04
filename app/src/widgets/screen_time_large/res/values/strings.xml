@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_screen_time_large_name">Screen Time Large</string>
+    <string name="widget_screen_time_large_description">Today\'s screen time and top apps</string>
+    <string name="widget_screen_time_large_today">Today</string>
+    <string name="widget_screen_time_large_top_apps">Top Apps</string>
+    <string name="widget_screen_time_large_grant_access">Grant access</string>
+    <string name="widget_screen_time_large_mock_total">4h 14m</string>
+    <string name="widget_screen_time_large_mock_app1">Instagram</string>
+    <string name="widget_screen_time_large_mock_time1">1h 56m</string>
+    <string name="widget_screen_time_large_mock_app2">YouTube</string>
+    <string name="widget_screen_time_large_mock_time2">45m</string>
+    <string name="widget_screen_time_large_mock_app3">Chrome</string>
+    <string name="widget_screen_time_large_mock_time3">32m</string>
+</resources>

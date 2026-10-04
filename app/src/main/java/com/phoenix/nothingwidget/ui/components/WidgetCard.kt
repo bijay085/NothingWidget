@@ -33,7 +33,7 @@ import com.phoenix.nothingwidget.ui.theme.AppTheme
 @Composable
 fun WidgetCard(
     name: String,
-    category: String,
+    description: String,
     tags: List<String>,
     isFavorite: Boolean,
     @DrawableRes previewResId: Int,
@@ -61,6 +61,7 @@ fun WidgetCard(
             )
             .clip(cardShape)
             .background(colors.card)
+            .cardDecoration()
             .border(1.dp, colors.cardBorder, cardShape)
             .padding(dimensions.cardPadding),
     ) {
@@ -103,9 +104,11 @@ fun WidgetCard(
                 Spacer(modifier = Modifier.height(6.dp))
 
                 Text(
-                    text = category,
+                    text = description,
                     style = typography.category,
                     color = colors.textSecondary,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
                 )
 
                 Spacer(modifier = Modifier.height(12.dp))
@@ -114,7 +117,7 @@ fun WidgetCard(
             }
         }
 
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         if (onCustomizeClick != null) {
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {

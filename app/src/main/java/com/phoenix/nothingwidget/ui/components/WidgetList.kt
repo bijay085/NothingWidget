@@ -20,7 +20,18 @@ fun WidgetList(
     onAddToHomeClick: (WidgetItem) -> Unit,
     onCustomizeClick: (WidgetItem) -> Unit,
     modifier: Modifier = Modifier,
+    isLoading: Boolean = false,
+    skeletonCount: Int = 3,
 ) {
+    if (isLoading) {
+        WidgetListSkeleton(
+            title = title,
+            count = skeletonCount,
+            modifier = modifier,
+        )
+        return
+    }
+
     val colors = AppTheme.colors
     val typography = AppTheme.typography
     val dimensions = AppTheme.dimensions
@@ -44,7 +55,7 @@ fun WidgetList(
             widgets.forEach { widget ->
                 WidgetCard(
                     name = widget.name,
-                    category = widget.category.label,
+                    description = widget.description,
                     tags = widget.resolvedTags(),
                     isFavorite = widget.id in favoriteIds,
                     previewResId = widget.previewResId,

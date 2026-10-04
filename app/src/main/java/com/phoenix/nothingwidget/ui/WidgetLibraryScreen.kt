@@ -15,10 +15,19 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.foundation.border
+import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -30,13 +39,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.phoenix.nothingwidget.R
 import com.phoenix.nothingwidget.ui.components.BackgroundPattern
 import com.phoenix.nothingwidget.ui.components.CategoryFilter
-import com.phoenix.nothingwidget.ui.components.SectionNavCard
+import com.phoenix.nothingwidget.ui.components.SectionEntry
+import com.phoenix.nothingwidget.ui.components.SectionGroupCard
 import com.phoenix.nothingwidget.ui.components.ThemeToggleIcon
 import com.phoenix.nothingwidget.ui.components.WidgetList
 import com.phoenix.nothingwidget.ui.model.LibraryFilter
@@ -53,9 +65,13 @@ fun WidgetLibraryScreen(
     onFavoriteClick: (String) -> Unit,
     onAddToHomeClick: (WidgetItem) -> Unit,
     onCustomizeClick: (WidgetItem) -> Unit,
+    installedTypeCount: Int,
+    installedInstanceCount: Int,
     recentCount: Int,
     favoriteCount: Int,
-    onOpenRecentlyAdded: () -> Unit,
+    isLoading: Boolean = false,
+    onOpenInstalled: () -> Unit,
+    onOpenNewlyIntroduced: () -> Unit,
     onOpenFavorites: () -> Unit,
     onOpenSettings: () -> Unit,
 ) {
@@ -63,11 +79,24 @@ fun WidgetLibraryScreen(
     val dimensions = AppTheme.dimensions
     val filters = remember(catalog) { LibraryFilter.tabsFor(catalog) }
     var selectedFilter by remember { mutableStateOf<LibraryFilter>(LibraryFilter.All) }
+    var query by rememberSaveable { mutableStateOf("") }
+    val searching = query.isNotBlank()
 
-    val categoryWidgets = remember(selectedFilter, catalog) {
-        when (val filter = selectedFilter) {
+    val categoryWidgets = remember(selectedFilter, catalog, query) {
+        val inCategory = when (val filter = selectedFilter) {
             LibraryFilter.All -> catalog
             is LibraryFilter.Category -> catalog.filter { it.category == filter.category }
+        }
+        val q = query.trim()
+        if (q.isEmpty()) {
+            inCategory
+        } else {
+            inCategory.filter { widget ->
+                widget.name.contains(q, ignoreCase = true) ||
+                    widget.description.contains(q, ignoreCase = true) ||
+                    widget.category.label.contains(q, ignoreCase = true) ||
+                    widget.metadata.tags.any { it.contains(q, ignoreCase = true) }
+            }
         }
     }
 
@@ -95,6 +124,14 @@ fun WidgetLibraryScreen(
 
             Spacer(modifier = Modifier.height(dimensions.headerToTabs))
 
+            SearchField(
+                query = query,
+                onQueryChange = { query = it },
+                modifier = Modifier.padding(horizontal = dimensions.large),
+            )
+
+            Spacer(modifier = Modifier.height(dimensions.small + 4.dp))
+
             CategoryFilter(
                 filters = filters,
                 selected = selectedFilter,
@@ -111,21 +148,47 @@ fun WidgetLibraryScreen(
                     .padding(bottom = dimensions.large + dimensions.medium),
                 verticalArrangement = Arrangement.spacedBy(dimensions.itemSpacing),
             ) {
-                when (val filter = selectedFilter) {
+                if (searching) {
+                    WidgetList(
+                        title = "Results",
+                        widgets = categoryWidgets,
+                        favoriteIds = favoriteIds,
+                        emptyTitle = "No matches",
+                        emptyMessage = "No widgets match \"${query.trim()}\".",
+                        onFavoriteClick = onFavoriteClick,
+                        onAddToHomeClick = onAddToHomeClick,
+                        onCustomizeClick = onCustomizeClick,
+                        isLoading = isLoading,
+                        skeletonCount = 3,
+                    )
+                } else when (val filter = selectedFilter) {
                     LibraryFilter.All -> {
-                        SectionNavCard(
-                            title = "Recently Added",
-                            count = recentCount,
-                            emptyLabel = "No recent widgets",
-                            onClick = onOpenRecentlyAdded,
-                        )
-
-                        SectionNavCard(
-                            title = "Favorites",
-                            count = favoriteCount,
-                            emptyLabel = "No favorites",
-                            onClick = onOpenFavorites,
-                        )
+                        if (!isLoading) {
+                            SectionGroupCard(
+                                title = "My Widgets",
+                                summary = "$installedTypeCount installed · $recentCount new · $favoriteCount favorites",
+                                entries = listOf(
+                                    SectionEntry(
+                                        title = "Installed Widgets",
+                                        subtitle = installedSubtitle(installedTypeCount, installedInstanceCount),
+                                        muted = installedTypeCount == 0,
+                                        onClick = onOpenInstalled,
+                                    ),
+                                    SectionEntry(
+                                        title = "Newly Introduced",
+                                        subtitle = countLabel(recentCount, "No new widgets"),
+                                        muted = recentCount == 0,
+                                        onClick = onOpenNewlyIntroduced,
+                                    ),
+                                    SectionEntry(
+                                        title = "Favorites",
+                                        subtitle = countLabel(favoriteCount, "No favorites"),
+                                        muted = favoriteCount == 0,
+                                        onClick = onOpenFavorites,
+                                    ),
+                                ),
+                            )
+                        }
 
                         WidgetList(
                             title = "All Widgets",
@@ -136,6 +199,8 @@ fun WidgetLibraryScreen(
                             onFavoriteClick = onFavoriteClick,
                             onAddToHomeClick = onAddToHomeClick,
                             onCustomizeClick = onCustomizeClick,
+                            isLoading = isLoading,
+                            skeletonCount = catalog.size.coerceIn(2, 4),
                         )
                     }
 
@@ -149,12 +214,108 @@ fun WidgetLibraryScreen(
                             onFavoriteClick = onFavoriteClick,
                             onAddToHomeClick = onAddToHomeClick,
                             onCustomizeClick = onCustomizeClick,
+                            isLoading = isLoading,
+                            skeletonCount = 3,
                         )
                     }
                 }
             }
         }
     }
+}
+
+@Composable
+private fun SearchField(
+    query: String,
+    onQueryChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val colors = AppTheme.colors
+    val typography = AppTheme.typography
+    val shape = RoundedCornerShape(999.dp)
+    var focused by remember { mutableStateOf(false) }
+    val active = focused || query.isNotEmpty()
+    val borderColor = if (active) colors.primary else colors.cardBorder
+    val glowAlpha = if (colors.isDark) 0.55f else 0.35f
+
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+            .fillMaxWidth()
+            .height(46.dp)
+            .then(
+                if (active) {
+                    Modifier.shadow(
+                        elevation = 14.dp,
+                        shape = shape,
+                        ambientColor = colors.primary.copy(alpha = glowAlpha),
+                        spotColor = colors.primary.copy(alpha = glowAlpha),
+                    )
+                } else {
+                    Modifier
+                },
+            )
+            .clip(shape)
+            .background(colors.card)
+            .border(width = if (active) 1.5.dp else 1.dp, color = borderColor, shape = shape)
+            .padding(start = 14.dp, end = 6.dp),
+    ) {
+        Icon(
+            imageVector = Icons.Default.Search,
+            contentDescription = null,
+            tint = if (active) colors.primary else colors.textMuted,
+            modifier = Modifier.size(20.dp),
+        )
+        Spacer(modifier = Modifier.width(10.dp))
+        Box(modifier = Modifier.weight(1f)) {
+            if (query.isEmpty()) {
+                Text(text = "Search widgets", style = typography.subtitle, color = colors.textMuted)
+            }
+            BasicTextField(
+                value = query,
+                onValueChange = onQueryChange,
+                singleLine = true,
+                textStyle = typography.subtitle.copy(color = colors.textPrimary),
+                cursorBrush = SolidColor(colors.primary),
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .onFocusChanged { focused = it.isFocused },
+            )
+        }
+        if (query.isNotEmpty()) {
+            IconButton(
+                onClick = { onQueryChange("") },
+                modifier = Modifier.size(36.dp),
+            ) {
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .size(26.dp)
+                        .clip(CircleShape)
+                        .background(colors.surfaceVariant),
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Close,
+                        contentDescription = "Clear search",
+                        tint = colors.textPrimary,
+                        modifier = Modifier.size(16.dp),
+                    )
+                }
+            }
+        }
+    }
+}
+
+private fun countLabel(count: Int, emptyLabel: String): String = when (count) {
+    0 -> emptyLabel
+    1 -> "1 widget"
+    else -> "$count widgets"
+}
+
+private fun installedSubtitle(types: Int, instances: Int): String {
+    if (types == 0) return "Nothing on your home screen"
+    return "${countLabel(types, "")} · $instances on home screen"
 }
 
 @Composable

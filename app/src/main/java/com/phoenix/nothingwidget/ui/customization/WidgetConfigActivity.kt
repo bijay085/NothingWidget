@@ -13,8 +13,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -122,12 +120,8 @@ private fun ConfigHost(content: @androidx.compose.runtime.Composable () -> Unit)
             modifier = Modifier
                 .fillMaxSize()
                 .statusBarsPadding()
-                .verticalScroll(rememberScrollState())
                 .padding(horizontal = dimensions.large)
-                .padding(
-                    top = dimensions.large,
-                    bottom = dimensions.large + dimensions.medium,
-                ),
+                .padding(top = dimensions.large),
         ) {
             content()
         }

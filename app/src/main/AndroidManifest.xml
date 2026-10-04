@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
 
-    <!-- Package visibility for the Weather widget tap target (Android 11+) -->
+    <!-- Package visibility for Weather tap targets + Screen Time app labels (Android 11+) -->
     <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
         <intent>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.APP_WEATHER" />
@@ -20,6 +38,46 @@
         <package android:name="com.accuweather.android" />
         <package android:name="com.weather.Weather" />
         <package android:name="com.yahoo.mobile.client.android.weather" />
+        <package android:name="com.google.android.apps.wellbeing" />
+        <intent>
+            <action android:name="com.google.android.apps.wellbeing.action.APP_USAGE_DASHBOARD" />
+        </intent>
+        <package android:name="com.samsung.android.lool" />
+        <package android:name="com.samsung.android.forest" />
+        <package android:name="com.miui.securitycenter" />
+        <package android:name="com.coloros.phonemanager" />
+        <package android:name="com.oneplus.security" />
+        <package android:name="com.nothing.hearthstone" />
+        <!-- Quick Actions: camera / QR scanner targets -->
+        <intent>
+            <action android:name="android.media.action.STILL_IMAGE_CAMERA" />
+        </intent>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <intent>
+            <action android:name="com.google.zxing.client.android.SCAN" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="google" android:host="lens" />
+        </intent>
+        <package android:name="com.google.zxing.client.android" />
+        <package android:name="com.google.android.googlequicksearchbox" />
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="geo" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.APP_MAPS" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.APP_CALENDAR" />
+        </intent>
+        <package android:name="com.google.android.keep" />
+        <package android:name="com.google.android.apps.maps" />
     </queries>
 
     <application
@@ -66,6 +124,45 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.phoenix.nothingwidget.widgets.screen_time.ScreenTimeConfigActivity"
+            android:exported="true"
+            android:label="@string/widget_customization_label"
+            android:theme="@style/Theme.NothingWidget"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.phoenix.nothingwidget.widgets.screen_time_large.ScreenTimeLargeConfigActivity"
+            android:exported="true"
+            android:label="@string/widget_customization_label"
+            android:theme="@style/Theme.NothingWidget"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.phoenix.nothingwidget.widgets.quick_actions.QuickActionsPermissionActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name="com.phoenix.nothingwidget.widgets.quick_actions.QuickActionsConfigActivity"
+            android:exported="true"
+            android:label="@string/widget_customization_label"
+            android:theme="@style/Theme.NothingWidget"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
         <!-- Exported only for system AppWidget / alarm broadcasts; internal refresh uses explicit intents. -->
         <receiver
             android:name="com.phoenix.nothingwidget.widgets.round_clock.RoundClockWidgetReceiver"
@@ -90,6 +187,52 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_weather_info" />
+        </receiver>
+
+        <receiver
+            android:name="com.phoenix.nothingwidget.widgets.screen_time.ScreenTimeWidgetReceiver"
+            android:exported="true"
+            android:label="@string/widget_screen_time_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_screen_time_info" />
+        </receiver>
+
+        <receiver
+            android:name="com.phoenix.nothingwidget.widgets.screen_time_large.ScreenTimeLargeWidgetReceiver"
+            android:exported="true"
+            android:label="@string/widget_screen_time_large_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_screen_time_large_info" />
+        </receiver>
+
+        <receiver
+            android:name="com.phoenix.nothingwidget.widgets.quick_actions.QuickActionsWidgetReceiver"
+            android:exported="true"
+            android:label="@string/widget_quick_actions_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_quick_actions_info" />
         </receiver>
     </application>
 

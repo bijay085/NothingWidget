@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Width locked at 4. Height steps:
+  4×2 → 2 | 4×3 → 4 | 4×4 → 6 | 4×5 → 9 | 4×6 → 12
+-->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:configure="com.phoenix.nothingwidget.widgets.screen_time_large.ScreenTimeLargeConfigActivity"
+    android:description="@string/widget_screen_time_large_description"
+    android:initialLayout="@layout/widget_screen_time_large"
+    android:maxResizeHeight="390dp"
+    android:maxResizeWidth="250dp"
+    android:minHeight="110dp"
+    android:minResizeHeight="110dp"
+    android:minResizeWidth="250dp"
+    android:minWidth="250dp"
+    android:previewImage="@drawable/screen_time_large_preview"
+    android:previewLayout="@layout/widget_screen_time_large"
+    android:resizeMode="vertical"
+    android:targetCellHeight="5"
+    android:targetCellWidth="4"
+    android:updatePeriodMillis="1800000"
+    android:widgetCategory="home_screen"
+    android:widgetFeatures="reconfigurable|configuration_optional" />

@@ -1,5 +1,6 @@
 package com.phoenix.nothingwidget.core.widget_config
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.util.TypedValue
 import android.view.View
@@ -14,6 +15,30 @@ fun isTransparent(@ColorInt color: Int): Boolean = Color.alpha(color) == 0
 /** Swap the whole background drawable — more reliable than tint for solid presets. */
 fun RemoteViews.setBackgroundRes(viewId: Int, @DrawableRes resId: Int) {
     setInt(viewId, "setBackgroundResource", resId)
+}
+
+/**
+ * Apply a solid background: known presets keep their drawables; anything else
+ * (Custom picker) tints a white rounded/oval base so corner shape is preserved.
+ */
+fun RemoteViews.setSolidBackground(
+    viewId: Int,
+    @ColorInt color: Int,
+    @DrawableRes tintableBaseRes: Int,
+    presetResFor: (Int) -> Int? = { null },
+    @DrawableRes transparentRes: Int? = null,
+) {
+    if (transparentRes != null && isTransparent(color)) {
+        setBackgroundRes(viewId, transparentRes)
+        return
+    }
+    val preset = presetResFor(color)
+    if (preset != null) {
+        setBackgroundRes(viewId, preset)
+        return
+    }
+    setBackgroundRes(viewId, tintableBaseRes)
+    setColorStateList(viewId, "setBackgroundTintList", ColorStateList.valueOf(color))
 }
 
 /** Recolors an ImageView, preserving per-pixel alpha (glows, gradients). */

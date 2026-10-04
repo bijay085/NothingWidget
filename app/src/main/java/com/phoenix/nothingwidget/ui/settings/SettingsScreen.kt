@@ -39,6 +39,8 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.phoenix.nothingwidget.core.settings.SettingsRepository
 import com.phoenix.nothingwidget.core.settings.TemperatureUnit
 import com.phoenix.nothingwidget.core.settings.TimeFormat
+import com.phoenix.nothingwidget.ui.components.BackButton
+import com.phoenix.nothingwidget.ui.components.cardDecoration
 import com.phoenix.nothingwidget.ui.theme.AppTheme
 import com.phoenix.nothingwidget.widgets.weather.WeatherLocationHelper
 import com.phoenix.nothingwidget.widgets.weather.WeatherWidgetReceiver
@@ -79,13 +81,9 @@ fun SettingsScreen(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(dimensions.medium),
     ) {
-        Text(
-            text = "‹ Back",
-            style = typography.subtitle,
-            color = colors.primary,
-            modifier = Modifier
-                .padding(bottom = dimensions.small)
-                .clickable(onClick = onBack),
+        BackButton(
+            onClick = onBack,
+            modifier = Modifier.padding(bottom = dimensions.small),
         )
 
         Text(
@@ -240,6 +238,7 @@ private fun SettingsCard(content: @Composable () -> Unit) {
             )
             .clip(shape)
             .background(colors.card)
+            .cardDecoration()
             .border(1.dp, colors.cardBorder, shape)
             .padding(16.dp),
     ) {

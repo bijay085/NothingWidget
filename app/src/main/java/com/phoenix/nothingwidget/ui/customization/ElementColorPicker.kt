@@ -4,10 +4,11 @@ import android.graphics.Color as AndroidColor
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -55,9 +56,11 @@ fun ElementColorPicker(
     var showAdvanced by remember { mutableStateOf(false) }
     val customSelected = presets.none { sameRgb(it.color, color) }
 
-    FlowRow(
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .horizontalScroll(rememberScrollState()),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         presets.forEach { choice ->
             ColorPresetChip(
@@ -94,26 +97,39 @@ private fun AdvancedColorPickerDialog(
     val colors = AppTheme.colors
     val typography = AppTheme.typography
     val hsv = remember { FloatArray(3) }
-    var hue by remember { mutableFloatStateOf(0f) }
-    var saturation by remember { mutableFloatStateOf(1f) }
-    var brightness by remember { mutableFloatStateOf(1f) }
-    var hexText by remember { mutableStateOf(toHex(color)) }
 
-    LaunchedEffect(color) {
-        val fromSliders = AndroidColor.HSVToColor(floatArrayOf(hue, saturation, brightness))
-        if (!sameRgb(fromSliders, color)) {
-            AndroidColor.colorToHSV(color or 0xFF000000.toInt(), hsv)
-            hue = hsv[0]
-            saturation = hsv[1]
-            brightness = hsv[2]
+    // Seed once from the incoming color. Near-black / gray need a lift or Hue
+    // changes look like a no-op (HSV with V=0 is always black).
+    val initial = remember(color) {
+        AndroidColor.colorToHSV(color or 0xFF000000.toInt(), hsv)
+        var h = hsv[0]
+        var s = hsv[1]
+        var v = hsv[2]
+        if (v < 0.08f) {
+            // Opened from Black — start on a vivid hue so sliders do something.
+            h = if (h.isNaN()) 0f else h
+            s = 1f
+            v = 1f
+        } else if (s < 0.08f) {
+            // Opened from White / gray — give Saturation room to move.
+            s = 1f
         }
-        hexText = toHex(color)
+        Triple(h, s, v)
     }
+    var hue by remember { mutableFloatStateOf(initial.first) }
+    var saturation by remember { mutableFloatStateOf(initial.second) }
+    var brightness by remember { mutableFloatStateOf(initial.third) }
+    var hexText by remember { mutableStateOf(toHex(AndroidColor.HSVToColor(floatArrayOf(hue, saturation, brightness)))) }
 
     fun emit(h: Float = hue, s: Float = saturation, v: Float = brightness) {
-        val next = AndroidColor.HSVToColor(floatArrayOf(h, s, v))
+        val next = AndroidColor.HSVToColor(floatArrayOf(h, s, v)) or 0xFF000000.toInt()
         hexText = toHex(next)
         onColorChange(next)
+    }
+
+    // Push the lifted starting color once so preview / widget match the sliders.
+    LaunchedEffect(Unit) {
+        emit()
     }
 
     val preview = Color(AndroidColor.HSVToColor(floatArrayOf(hue, saturation, brightness)))
@@ -172,7 +188,10 @@ private fun AdvancedColorPickerDialog(
                             value = hue,
                             onValueChange = {
                                 hue = it
-                                emit(h = it)
+                                // Hue is invisible at V≈0 or S≈0 — keep color lively.
+                                if (brightness < 0.15f) brightness = 1f
+                                if (saturation < 0.15f) saturation = 1f
+                                emit(h = it, s = saturation, v = brightness)
                             },
                             valueRange = 0f..360f,
                             colors = SliderDefaults.colors(

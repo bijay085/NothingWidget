@@ -70,7 +70,7 @@ fun WidgetTagRow(
         tags.forEach { tag ->
             WidgetTag(
                 label = tag,
-                accent = tag == "New",
+                accent = tag.equals("New", ignoreCase = true),
             )
         }
     }

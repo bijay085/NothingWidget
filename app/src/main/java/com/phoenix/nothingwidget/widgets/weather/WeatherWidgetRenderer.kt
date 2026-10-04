@@ -12,7 +12,7 @@ import com.phoenix.nothingwidget.core.widget_config.ElementStyleConfig
 import com.phoenix.nothingwidget.core.widget_config.StylePresets
 import com.phoenix.nothingwidget.core.widget_config.WidgetCustomizationConfig
 import com.phoenix.nothingwidget.core.widget_config.WidgetCustomizationRepository
-import com.phoenix.nothingwidget.core.widget_config.setBackgroundRes
+import com.phoenix.nothingwidget.core.widget_config.setSolidBackground
 import com.phoenix.nothingwidget.core.widget_config.setTextSizePx
 import com.phoenix.nothingwidget.core.widget_config.showFontVariant
 import com.phoenix.nothingwidget.core.widget_config.tintImage
@@ -128,7 +128,19 @@ object WeatherWidgetRenderer {
 
         val views = RemoteViews(context.packageName, R.layout.widget_weather)
         views.setImageViewResource(R.id.weather_icon, weather.iconResId)
-        views.setBackgroundRes(R.id.widget_weather_root, backgroundRes(config.backgroundColor))
+        views.setSolidBackground(
+            viewId = R.id.widget_weather_root,
+            color = config.backgroundColor,
+            tintableBaseRes = R.drawable.weather_background_tintable,
+            presetResFor = { color ->
+                when (color) {
+                    WeatherCustomization.COLOR_BLACK -> R.drawable.weather_background_black
+                    WeatherCustomization.COLOR_LIGHT -> R.drawable.weather_background_light
+                    WeatherCustomization.COLOR_DARK_NAVY -> R.drawable.weather_background
+                    else -> null
+                }
+            },
+        )
         applyIconStyle(views, icon)
 
         views.showFontVariant(temperature.fontFamily, TEMPERATURE_VARIANTS, StylePresets.FONT_DEFAULT)
@@ -168,12 +180,6 @@ object WeatherWidgetRenderer {
             StylePresets.ICON_MONO -> views.tintImage(R.id.weather_icon, icon.textColor)
             else -> views.tintImage(R.id.weather_icon, NO_TINT)
         }
-    }
-
-    private fun backgroundRes(@ColorInt color: Int): Int = when (color) {
-        WeatherCustomization.COLOR_BLACK -> R.drawable.weather_background_black
-        WeatherCustomization.COLOR_LIGHT -> R.drawable.weather_background_light
-        else -> R.drawable.weather_background
     }
 
     private fun sp(context: Context, sizeSp: Int): Float =

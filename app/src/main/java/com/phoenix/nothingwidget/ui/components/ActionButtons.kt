@@ -21,7 +21,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.phoenix.nothingwidget.ui.theme.AppTheme
 
-private val ButtonShape = RoundedCornerShape(16.dp)
+private val ButtonShape = RoundedCornerShape(14.dp)
 
 @Composable
 private fun Modifier.pressScale(pressed: Boolean): Modifier {

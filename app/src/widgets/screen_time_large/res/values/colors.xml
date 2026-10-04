@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="screen_time_large_background">#101522</color>
+    <color name="screen_time_large_text">#FFFFFF</color>
+    <color name="screen_time_large_secondary">#B7C0D6</color>
+    <color name="screen_time_large_accent">#7C6CFF</color>
+</resources>

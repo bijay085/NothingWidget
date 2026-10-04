@@ -7,11 +7,12 @@ package com.phoenix.nothingwidget.ui.model
 enum class WidgetCategory(val label: String) {
     Clock("Clock"),
     Weather("Weather"),
+    System("System"),
     Battery("Battery"),
     Calendar("Calendar"),
 }
 
-/** Category navigation only — never Recently Added / Favorites. */
+/** Category navigation only — never Installed / Newly Introduced / Favorites. */
 sealed class LibraryFilter {
     abstract val label: String
 
@@ -42,6 +43,7 @@ sealed class LibraryFilter {
  */
 sealed class AppDestination {
     data object Library : AppDestination()
+    data object Installed : AppDestination()
     data object RecentlyAdded : AppDestination()
     data object Favorites : AppDestination()
     data object Settings : AppDestination()

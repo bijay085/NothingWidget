@@ -7,10 +7,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -41,7 +44,10 @@ import com.phoenix.nothingwidget.core.widget_config.StylePresets
 import com.phoenix.nothingwidget.core.widget_config.WidgetCustomization
 import com.phoenix.nothingwidget.core.widget_config.WidgetCustomizationConfig
 import com.phoenix.nothingwidget.core.widget_config.WidgetCustomizationRepository
+import com.phoenix.nothingwidget.ui.components.BackButton
+import com.phoenix.nothingwidget.ui.components.CustomizationScreenSkeleton
 import com.phoenix.nothingwidget.ui.components.PrimaryActionButton
+import com.phoenix.nothingwidget.ui.components.cardDecoration
 import com.phoenix.nothingwidget.ui.components.SecondaryActionButton
 import com.phoenix.nothingwidget.core.widget_config.isSelected
 import com.phoenix.nothingwidget.core.widget_config.isTransparent
@@ -72,20 +78,21 @@ fun WidgetCustomizationScreen(
     LaunchedEffect(saved) {
         if (draft == null) draft = saved
     }
-    val config = draft ?: return
+    val config = draft
+    if (config == null) {
+        CustomizationScreenSkeleton(
+            widgetName = widgetName,
+            onBack = onBack,
+        )
+        return
+    }
 
+    // Header and preview stay pinned; only the options below scroll.
     Column(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(dimensions.medium),
     ) {
-        Text(
-            text = "‹ Back",
-            style = typography.subtitle,
-            color = colors.primary,
-            modifier = Modifier
-                .padding(bottom = dimensions.small)
-                .clickable(onClick = onBack),
-        )
+        BackButton(onClick = onBack)
         Text(
             text = "Customize $widgetName",
             style = typography.title,
@@ -97,55 +104,69 @@ fun WidgetCustomizationScreen(
             config = config,
         )
 
-        ChoiceSection(
-            title = "Background",
-            choices = customization.backgroundChoices,
-            selected = { choice ->
-                choice is ColorChoice && choice.color == config.backgroundColor
-            },
-            onSelect = { choice ->
-                if (choice is ColorChoice) draft = config.withBackground(choice.color)
-            },
-        )
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(dimensions.medium),
+        ) {
+            BackgroundSection(
+                presets = customization.backgroundChoices,
+                color = config.backgroundColor,
+                onColorChange = { draft = config.withBackground(it) },
+            )
 
-        customization.elementSpecs.forEach { spec ->
-            val element = config.element(spec.elementId)
-            ElementSectionCard(
-                spec = spec,
-                style = element,
-                onChange = { property, choice ->
-                    draft = config.withElement(element.with(property, choice))
-                },
-                onColorChange = { argb ->
-                    draft = config.withElement(element.copy(textColor = argb))
+            customization.elementSpecs.forEach { spec ->
+                // Info-only rows (no properties) — secondary note below action pickers.
+                if (spec.properties.isEmpty()) {
+                    Text(
+                        text = spec.title,
+                        style = typography.subtitle,
+                        color = colors.textSecondary,
+                    )
+                    return@forEach
+                }
+                val element = config.element(spec.elementId)
+                ElementSectionCard(
+                    spec = spec,
+                    style = element,
+                    onChange = { property, choice ->
+                        draft = config.withElement(element.with(property, choice))
+                    },
+                    onColorChange = { argb ->
+                        draft = config.withElement(element.copy(textColor = argb))
+                    },
+                )
+            }
+
+            PrimaryActionButton(
+                text = "Apply",
+                modifier = Modifier.fillMaxWidth(),
+                enabled = config != saved,
+                onClick = {
+                    scope.launch {
+                        WidgetCustomizationRepository.apply(context, customization, config)
+                        Toast.makeText(context, "$widgetName updated", Toast.LENGTH_SHORT).show()
+                        onApplied?.invoke()
+                    }
                 },
             )
+
+            SecondaryActionButton(
+                text = "Reset to default",
+                modifier = Modifier.fillMaxWidth(),
+                accent = false,
+                onClick = {
+                    scope.launch {
+                        WidgetCustomizationRepository.reset(context, customization)
+                        draft = customization.defaults
+                    }
+                },
+            )
+
+            Spacer(modifier = Modifier.height(dimensions.large))
         }
-
-        PrimaryActionButton(
-            text = "Apply",
-            modifier = Modifier.fillMaxWidth(),
-            enabled = config != saved,
-            onClick = {
-                scope.launch {
-                    WidgetCustomizationRepository.apply(context, customization, config)
-                    Toast.makeText(context, "$widgetName updated", Toast.LENGTH_SHORT).show()
-                    onApplied?.invoke()
-                }
-            },
-        )
-
-        SecondaryActionButton(
-            text = "Reset to default",
-            modifier = Modifier.fillMaxWidth(),
-            accent = false,
-            onClick = {
-                scope.launch {
-                    WidgetCustomizationRepository.reset(context, customization)
-                    draft = customization.defaults
-                }
-            },
-        )
     }
 }
 
@@ -165,6 +186,7 @@ private fun ElementSectionCard(
             .fillMaxWidth()
             .clip(shape)
             .background(colors.card)
+            .cardDecoration()
             .border(1.dp, colors.cardBorder, shape)
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -239,6 +261,35 @@ private fun PropertyRow(label: String, content: @Composable () -> Unit) {
 }
 
 @Composable
+private fun BackgroundSection(
+    presets: List<ColorChoice>,
+    color: Int,
+    onColorChange: (Int) -> Unit,
+) {
+    val colors = AppTheme.colors
+    val typography = AppTheme.typography
+    val shape = RoundedCornerShape(20.dp)
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(shape)
+            .background(colors.card)
+            .cardDecoration()
+            .border(1.dp, colors.cardBorder, shape)
+            .padding(16.dp),
+    ) {
+        Text(text = "Background", style = typography.cardTitle, color = colors.textPrimary)
+        Spacer(modifier = Modifier.height(12.dp))
+        ElementColorPicker(
+            color = color,
+            presets = presets,
+            onColorChange = onColorChange,
+        )
+    }
+}
+
+@Composable
 private fun ChoiceSection(
     title: String,
     choices: List<StyleChoice>,
@@ -254,6 +305,7 @@ private fun ChoiceSection(
             .fillMaxWidth()
             .clip(shape)
             .background(colors.card)
+            .cardDecoration()
             .border(1.dp, colors.cardBorder, shape)
             .padding(16.dp),
     ) {
@@ -269,9 +321,11 @@ private fun ChoiceChips(
     selected: (StyleChoice) -> Boolean,
     onSelect: (StyleChoice) -> Unit,
 ) {
-    FlowRow(
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .horizontalScroll(rememberScrollState()),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         choices.forEach { choice ->
             StyleChip(
